@@ -26,7 +26,7 @@ namespace DataLayer
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("users");
-            modelBuilder.Entity<User>().Property(x => x.userName).HasColumnName("userid");
+            modelBuilder.Entity<User>().Property(x => x.username).HasColumnName("userid");
             modelBuilder.Entity<User>().Property(x => x.password).HasColumnName("password");
 
 
@@ -35,6 +35,9 @@ namespace DataLayer
             modelBuilder.Entity<Person>().Property(x => x.fullName).HasColumnName("primaryName");
             modelBuilder.Entity<Person>().Property(x => x.birthYear).HasColumnName("brithYear");
             modelBuilder.Entity<Person>().Property(x => x.deathYear).HasColumnName("endyear");
+
+            modelBuilder.Entity<Person>().ToTable("charaters_played");
+            modelBuilder.Entity<Person>().Property(x => x.featuredIn).HasColumnName("tconst");
 
 
             modelBuilder.Entity<Movie>().ToTable("title_basics");

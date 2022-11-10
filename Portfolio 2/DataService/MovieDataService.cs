@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Portfolio_2.Domain;
 using Portfolio_2.Models;
+using Portfolio_2.IDataService;
 
 namespace Portfolio_2.DataService
 {
-    public class MovieDataService
+    public class MovieDataService : IMovieDataService
     {
     }
 }

@@ -57,9 +57,9 @@ namespace DataLayer
 
 
             modelBuilder.Entity<Bookmarks>().ToTable("title_bookmarks");
-            modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkMovieBID).HasColumnName("");
-            modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkMovieTconst).HasColumnName("");
-            modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkMoviePrimarytitle).HasColumnName("");
+            modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkMovieBID).HasColumnName("tbookid");
+            modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkMovieTconst).HasColumnName("tconst");
+            modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkMoviePrimarytitle).HasColumnName("primarytitle");
 
 
             modelBuilder.Entity<Rating>().ToTable("name_ratings");

@@ -64,7 +64,7 @@ namespace DataLayer
 
             modelBuilder.Entity<Rating>().ToTable("name_ratings");
             modelBuilder.Entity<Rating>().Property(x => x.ratingnconst).HasColumnName("nconst");
-            modelBuilder.Entity<Rating>().Property(x => x.ratingAvergePeron).HasColumnName("averagerating");
+            modelBuilder.Entity<Rating>().Property(x => x.ratingAvergePerson).HasColumnName("averagerating");
             modelBuilder.Entity<Rating>().Property(x => x.ratingNumPerson).HasColumnName("numvotes");
 
 

@@ -6,7 +6,7 @@ namespace Portfolio_2.IDataService
     public interface IRatingHistoryDataService
     {
         IList<RatingHistory> GetRatingHistories(int page, int pageSize);
-        RatingHistory GetRatingHistory(string ratingHisMovTID, string ratingHisPersonNID);
+        RatingHistory? GetRatingHistory(string ratingHisMovTID, string ratingHisPersonNID);
         void CreateRatingHistoryPerson(RatingHistory ratingHistoryP);
         bool UpdateRatingHistoryPerson(RatingHistory ratingHistoryP);
         bool DeleteRatingHistoryPerson(string ratingHisPersonNID);

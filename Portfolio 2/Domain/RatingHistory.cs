@@ -8,7 +8,11 @@ namespace Portfolio_2.Domain
 {
     public class RatingHistory
     {
-        public float ratingHisMov { get; set; }
-        public float ratingHisPeron { get; set; }
+        public string ratingHisMovTID { get; set; }
+        public float ratingHisMovRating { get; set; }
+        public string ratingHisMovTconst { get; set; }
+        public string ratingHisPersonNID { get; set; }
+        public float ratingHisPersonRating { get; set; }
+        public string ratingHisPersonNconst { get; set; }
     }
 }

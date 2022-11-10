@@ -8,8 +8,12 @@ namespace Portfolio_2.Domain
 {
     public class Rating
     {
-        public float ratingn { get; set; }
-        public float ratingt { get; set; }
+        public string? ratingnconst { get; set; }
+        public float? ratingAvergePeron { get; set; }
+        public int ratingNumPerson { get; set; }
+        public string? ratingtonst { get; set; }
+        public float? ratingAvergeTitle { get; set; }
+        public float? ratingNumTitle { get; set; }
 
     }
 }

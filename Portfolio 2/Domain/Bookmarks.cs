@@ -8,7 +8,12 @@ namespace Portfolio_2.Domain
 {
     public class Bookmarks
     {
-        public string? bookmarkPerson { get; set; }
-        public string? bookmarkMovie { get; set; }
+        public string? bookmarkPersonBID { get; set; }
+        public string? bookmarkPersonNconst { get; set; }
+        public string? bookmarkPersonName { get; set; }
+        public string? bookmarkMovieBID { get; set; }
+        public string? bookmarkMovieTconst { get; set; }
+        public string? bookmarkMoviePrimarytitle { get; set; }
+
     }
 }

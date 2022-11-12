@@ -1,11 +1,21 @@
+using Portfolio_2.DataService;
+using Portfolio_2.IDataService;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddSingleton<IUserDataService, UserDataService>();
+builder.Services.AddSingleton<IPersonDataService, PersonDataService>();
+builder.Services.AddSingleton<IMovieDataService, MovieDataService>();
+builder.Services.AddSingleton<IBookmarkDataService, BookmarkDataService>();
+builder.Services.AddSingleton<IRatingDataService, RatingDataService>();
+builder.Services.AddSingleton<IRatingHistoryDataService, RatingHistoryDataService>();
+builder.Services.AddSingleton<ISearchHistoryDataService, SearchHistoryDataService>();
+
 
 var app = builder.Build();
 

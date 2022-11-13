@@ -37,13 +37,14 @@ namespace DataLayer.DataService
             return db.users
                 .ToList();
         }
-        public User? GetUser(string username)
+        public User? GetUsers(string username)
         {
             using var db = new NorthwindContext();
             if (username != null)
             {
                 return db.users.Find(username);
             }
+            return null;
         }
         public bool UpdateUser(User user)
         {

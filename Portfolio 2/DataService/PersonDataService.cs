@@ -1,4 +1,5 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,23 +49,24 @@ namespace DataLayer.DataService
             {
                 return db.name_basics.Find(nameID);
             }
+            return null;
         }
         public bool UpdatePerson(Person person)
         {
             using var db = new NorthwindContext();
-            var dbPerson = db.name_basics.Find(person.personID);
+            var dbPerson = db.name_basics.Find(person.nameID);
             if (dbPerson == null) return false;
-            dbPerson.personID = person.personID;
+            dbPerson.nameID = person.nameID;
             dbPerson.fullName = person.fullName;
             db.SaveChanges();
             return true;
         }
-        public int GetNumberOfPerons()
+        public int GetNumberOfPersons()
         {
             using var db = new NorthwindContext();
             return db.name_basics.Count();
         }
-        public IList<PersonSearchModel> GetPersonSearches(string searchPerson)
+        /*public IList<PersonSearchModel> GetPersonSearches(string searchPerson)
         {
             using var db = new NorthwindContext();
             return db.name_basics
@@ -76,6 +78,6 @@ namespace DataLayer.DataService
                     PersonName = x.Person.fullName
                 })
                 .ToList();
-        }
+        }*/
     }
 }

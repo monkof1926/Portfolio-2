@@ -47,6 +47,7 @@ namespace DataLayer.DataService
             {
                 return db.title_basics.Find(movieID);
             }
+            return null;
         }
         public bool UpdateMovie(Movie movie)
         {
@@ -63,7 +64,7 @@ namespace DataLayer.DataService
             using var db = new NorthwindContext();
             return db.title_basics.Count();
         }
-        public IList<MovieSearchModel> GetMovieSearches(string searchMovie)
+        /*public IList<MovieSearchModel> GetMovieSearches(string searchMovie)
         {
             using var db = new NorthwindContext();
             return db.title_basics
@@ -75,6 +76,6 @@ namespace DataLayer.DataService
                     MovieName = x.Movie.title
                 })
                 .ToList();
-        }
+        }*/
     }
 }

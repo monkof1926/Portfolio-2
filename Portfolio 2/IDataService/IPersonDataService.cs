@@ -11,7 +11,7 @@ namespace DataLayer.IDataService
         void CreatePerson(Person person);
         bool UpdatePerson(Person person);
         bool DeletePerson(string personID);
-        int GetNumberOfPerons();
-        IList<PersonSearchModel> GetPersonSearches(string searchPerson);
+        int GetNumberOfPersons();
+        //IList<PersonSearchModel> GetPersonSearches(string searchPerson);
     }
 }

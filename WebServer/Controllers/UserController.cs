@@ -36,7 +36,7 @@ namespace WebServer.Controllers
         [HttpGet("{username}", Name = nameof(GetUsers))]
         public IActionResult GetUsers(string username)
         {
-            var user = _userDataService.GetUser(username);
+            var user = _userDataService.GetUsers(username);
             
             if (user == null)
             {
@@ -55,7 +55,7 @@ namespace WebServer.Controllers
 
             _userDataService.CreateUser(user);
 
-            return CreatedAtRoute(null, UserCreateModel));
+            return CreatedAtRoute(null, UserCreateModel);
         }
 
         [HttpDelete("{username}")]

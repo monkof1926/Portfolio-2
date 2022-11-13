@@ -30,14 +30,14 @@ namespace DataLayer.DataService
 
             return db.SaveChanges() > 0;
         }
-        public IList<Person> GetUsers()
+        public IList<User> GetUsers()
 
         {
             using var db = new NorthwindContext();
             return db.users
                 .ToList();
         }
-        public Person? GetUser(string username)
+        public User? GetUser(string username)
         {
             using var db = new NorthwindContext();
             if (username != null)

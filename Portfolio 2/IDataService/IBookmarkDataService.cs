@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Portfolio_2.Models;
+using Portfolio_2.Models;s
 using DataLayer.Domain;
-using Portfolio_2.Domain;
 
-namespace Portfolio_2.IDataService
+
+namespace DataLayer.IDataService
 {
     public interface IBookmarkDataService
     {

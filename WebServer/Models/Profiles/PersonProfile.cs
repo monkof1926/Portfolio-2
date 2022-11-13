@@ -1,9 +1,5 @@
 ﻿using AutoMapper;
-using Portfolio_2.DataService;
-using Portfolio_2.IDataService;
-using Portfolio_2.Domain;
 using DataLayer.Domain;
-using WebServer.Models;
 
 namespace WebServer.Models.Profiles
 {

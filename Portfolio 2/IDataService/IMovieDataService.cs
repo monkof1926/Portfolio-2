@@ -1,8 +1,8 @@
-﻿using Portfolio_2.Models;
+﻿using DataLayer.Models;
 using DataLayer.Domain;
 
 
-namespace Portfolio_2.IDataService
+namespace DataLayer.IDataService
 {
     public interface IMovieDataService
     {

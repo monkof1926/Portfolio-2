@@ -1,5 +1,6 @@
-using Portfolio_2.DataService;
-using Portfolio_2.IDataService;
+using DataLayer.Domain;
+using DataLayer.DataService;
+using DataLayer.IDataService;
 
 
 var builder = WebApplication.CreateBuilder(args);

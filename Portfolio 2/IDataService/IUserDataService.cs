@@ -1,7 +1,6 @@
-﻿
-using DataLayer.Domain;
+﻿using DataLayer.Domain;
 
-namespace Portfolio_2.IDataService
+namespace DataLayer.IDataService
 {
     public interface IUserDataService
     {

@@ -1,8 +1,13 @@
 ﻿using AutoMapper;
-using Portfolio_2.Domain;
+using DataLayer;
+using DataLayer.Domain;
+using DataLayer.IDataService;
+using DataLayer.DataService;
 using Microsoft.AspNetCore.Mvc;
-using Portfolio_2.IDataService;
-using Portfolio_2.DataService;
+using Microsoft.AspNetCore.Mvc;
+using WebServer.Models;
+
+
 
 
 namespace WebServer.Controllers
@@ -21,5 +26,8 @@ namespace WebServer.Controllers
             _generator = generator;
             _mapper = mapper;
         }
+
+        [HttpGet(Name = nameof())]
+       
     }
 }

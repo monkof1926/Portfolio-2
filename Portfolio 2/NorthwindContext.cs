@@ -1,6 +1,5 @@
 ﻿using DataLayer.Domain;
 using Microsoft.EntityFrameworkCore;
-using Portfolio_2.Domain;
 
 namespace DataLayer
 {

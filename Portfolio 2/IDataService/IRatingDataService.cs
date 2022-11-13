@@ -1,7 +1,6 @@
-﻿using Portfolio_2.Domain;
-using Portfolio_2.Models;
+﻿using DataLayer.Domain;
 
-namespace Portfolio_2.IDataService
+namespace DataLayer.IDataService
 {
     public interface IRatingDataService
     {

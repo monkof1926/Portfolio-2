@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using Portfolio_2.Domain;
+using DataLayer.Domain;
+
 
 namespace WebServer.Models.Profiles
 {
@@ -7,7 +8,7 @@ namespace WebServer.Models.Profiles
     {
         public UserProfilecs()
         {
-            CreateMap<DataLayer.Domain.User, UserModel>();
+            CreateMap<User, UserModel>();
             CreateMap<UserModel, DataLayer.Domain.User>();
         }
     }

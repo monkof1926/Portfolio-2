@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Portfolio_2.Domain;
-using Portfolio_2.Models;
-using Portfolio_2.IDataService;
-using DataLayer;
+using DataLayer.Domain;
+using DataLayer.IDataService;
 using Microsoft.EntityFrameworkCore;
 
-namespace Portfolio_2.DataService
+namespace DataLayer.DataService
 {
     public class RatingHistoryDataService : IRatingHistoryDataService
     {

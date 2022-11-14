@@ -29,7 +29,7 @@ namespace DataLayer.DataService
 
             return db.SaveChanges() > 0;
         }
-        public IList<RatingHistory> GetRatingHistories(int page, int pageSize)
+        public IList<RatingHistory> GetRatingHistoriesPers(int page, int pageSize)
         {
             using var db = new NorthwindContext();
             return db.name_ratings_hist
@@ -39,17 +39,25 @@ namespace DataLayer.DataService
                 .OrderBy(x => x.ratingHisPersonNID)
                 .ToList();
         }
-        public RatingHistory? GetRatingHistory(string ratingHisMovTID, string ratingHisPersonNID)
+        public IList<RatingHistory> GetRatingHistoriesMov(int page, int pageSize)
         {
             using var db = new NorthwindContext();
-            if (ratingHisMovTID != null)
-            {
-                return db.name_ratings_hist.Find(ratingHisMovTID);
-            }
-            else
-            {
-                return db.name_ratings_hist.Find(ratingHisMovTID);
-            }
+            return db.title_ratings_hist
+                .Include(x => x.ratingHisMovRating)
+                .Skip(page * pageSize)
+                .Take(pageSize)
+                .OrderBy(x => x.ratingHisMovTID)
+                .ToList();
+        }
+        public RatingHistory? GetRatingHistoryPers(string ratingHisPersonNID)
+        {
+            using var db = new NorthwindContext();
+            return db.name_ratings_hist.Find(ratingHisPersonNID);
+        }
+        public RatingHistory? GetRatingHistoryMov(string ratingHisMovTID)
+        {
+            using var db = new NorthwindContext();
+            return db.title_ratings_hist.Find(ratingHisMovTID);
         }
         public bool UpdateRatingHistoryPerson(RatingHistory ratingHistory)
         {

@@ -29,22 +29,27 @@ namespace DataLayer.DataService
 
             return db.SaveChanges() > 0;
         }
-        public IList<Rating> GetRatings()
+        public IList<Rating> GetRatingsPers()
         {
             using var db = new NorthwindContext();
             return db.name_ratings.ToList();
         }
-        public Rating? GetRatings(string ratingAvergePerson, string ratingAvergeTitle)
+
+        public IList<Rating> GetRatingsMov()
         {
             using var db = new NorthwindContext();
-            if (ratingAvergePerson != null)
-            {
-                return db.name_ratings.Find(ratingAvergePerson);
-            }
-            else(ratingAvergeTitle != null)
-            {
+            return db.title_ratings.ToList();
+        }
+        public Rating? GetRatingsPers(string ratingAvergePerson)
+        {
+            using var db = new NorthwindContext();
+            return db.name_ratings.Find(ratingAvergePerson);
+            
+        }
+        public Rating? GetRatingsMov(string ratingAvergeTitle)
+        {
+            using var db = new NorthwindContext();
                 return db.name_ratings.Find(ratingAvergeTitle);
-            }
         }
         public bool UpdateRatingPerson(Rating rating) 
         {

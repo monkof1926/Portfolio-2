@@ -26,9 +26,36 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetMovies))]
         public IActionResult GetMovies(int page = 0, int pageSize = 15)
         {
-            var movie = _movieDataService.GetMovies(page, pageSize).Select(x => MovieListModel)());
+            var movie = _movieDataService.GetMovies(page, pageSize).Select(MovieListModel);
             var total = _movieDataService.GetNumberOfMovies();
             return Ok(Paging(page, pageSize, total, movie));
+        }
+
+        [HttpGet("{username}", Name = nameof(GetMovies))]
+        public IActionResult GetMovies(string movieID)
+        {
+            var movie = _movieDataService.GetMovies(movieID);
+
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            var model = MovieModel(movie);
+
+            return Ok(model);
+        }
+
+        [HttpDelete("{movie}")]
+        public IActionResult DeleteMovie(string movieId)
+        {
+            var deleted = _movieDataService.DeleteMovie(movieId);
+
+            if (!deleted)
+            {
+                return NotFound();
+            }
+            return Ok();
         }
 
         private object Paging<T>(int page, int pageSize, int total, IEnumerable<T> items)

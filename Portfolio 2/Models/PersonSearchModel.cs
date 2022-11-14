@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Models
 {
-    internal class PersonSearchModel
+    public class PersonSearchModel
     {
         public string? PersonFullName { get; set; }
         public string? birthYear { get; set; }

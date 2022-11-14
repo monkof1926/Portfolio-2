@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using DataLayer.DataService;
 using DataLayer.Domain;
 using DataLayer.IDataService;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +23,7 @@ namespace WebServer.Controllers
         }
 
         [HttpGet(Name = nameof(GetBookmarksPers))]
-        public IActionResult GetBookmarks()
+        public IActionResult GetBookmarksPers()
         {
             var user = _bookmarkDataService.GetBookmarksPers().Select(BookmarksCreateModel);
             return Ok(user);

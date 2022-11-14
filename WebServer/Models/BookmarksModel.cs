@@ -2,7 +2,7 @@
 {
     public class BookmarksModel
     {
-        public int Url { get; set; }
+        public string Url { get; set; }
         public int bookmarkPersonNconst { get; set; }
         public int bookmarkPersonName { get; set; }
         public string? bookmarkMovieTconst { get; set; }

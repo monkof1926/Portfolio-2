@@ -14,7 +14,7 @@ namespace WebServer.Controllers
         private readonly LinkGenerator _generator;
         private readonly IMapper _mapper;
 
-        private const int MaxpageSize = 15;
+        private const int MaxpageSize = 125;
 
         public MovieController(IMovieDataService movieDataService, LinkGenerator generator, IMapper mapper)
         {
@@ -26,7 +26,7 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetMovies))]
         public IActionResult GetMovies(int page = 0, int pageSize = 15)
         {
-            var movie = _movieDataService.GetMovies(page, pageSize).Select(MovieListModel);
+            var movie = _movieDataService.GetMovies(page, pageSize).Select(x => MovieListModel)());
             var total = _movieDataService.GetNumberOfMovies();
             return Ok(Paging(page, pageSize, total, movie));
         }

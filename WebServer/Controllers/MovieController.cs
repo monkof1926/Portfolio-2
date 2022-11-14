@@ -58,14 +58,14 @@ namespace WebServer.Controllers
             return result;
         }
                 
-        private MovieModel CreateMovieModel(Movie movie)
+        private MovieModel MovieModel(Movie movie)
         {
             var model = _mapper.Map<MovieModel>(movie);
             model.Url = _generator.GetUriByName(HttpContext, nameof(GetMovies), new { movie.movieID });
             return model;
         }
 
-        private MovieListModel CreateMovieListModel(Movie movie)
+        private MovieListModel MovieListModel(Movie movie)
         {
             var model = _mapper.Map<MovieListModel>(movie);
             model.Url = _generator.GetUriByName(HttpContext, nameof(GetMovies), new { movie.movieID });

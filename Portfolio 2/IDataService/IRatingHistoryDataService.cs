@@ -5,10 +5,10 @@ namespace DataLayer.IDataService
 {
     public interface IRatingHistoryDataService
     {
-        IList<RatingHistory> GetRatingHistoriesPers(int page, int pageSize);
-        IList<RatingHistory> GetRatingHistoriesMov(int page, int pageSize);
-        RatingHistory? GetRatingHistoryPers(string ratingHisPersonNID);
-        RatingHistory? GetRatingHistoryMov(string ratingHisMovTID);
+        IList<RatingHistory> GetRatingHistoriesPerson();
+        IList<RatingHistory> GetRatingHistoriesMovie();
+        RatingHistory? GetRatingHistoryPerson(string ratingHisPersonNID);
+        RatingHistory? GetRatingHistoryMovie(string ratingHisMovTID);
         void CreateRatingHistoryPerson(RatingHistory ratingHistoryP);
         bool UpdateRatingHistoryPerson(RatingHistory ratingHistoryP);
         bool DeleteRatingHistoryPerson(string ratingHisPersonNID);

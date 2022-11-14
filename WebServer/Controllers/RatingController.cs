@@ -31,7 +31,7 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetRatingsMovie))]
         public IActionResult GetRatingsMovie()
         {
-            var rating = _ratingDataService.GetRatingsPers().Select(RatingCreateModelMovie);
+            var rating = _ratingDataService.GetRatingsMov().Select(RatingCreateModelMovie);
             return Ok(rating);
         }
         [HttpGet("{ratingnconst}", Name = nameof(GetRatingsPerson))]

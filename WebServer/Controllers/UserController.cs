@@ -29,7 +29,7 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetUsers))]
         public IActionResult GetUsers()
         {
-            var user = _userDataService.GetUsers().Select(x => x.UserCreateModel(x));
+            var user = _userDataService.GetUsers().Select(UserCreateModel);
             return Ok(user);
         }
 

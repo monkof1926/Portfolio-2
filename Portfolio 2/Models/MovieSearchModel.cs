@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Models
 {
-    internal class MovieSearchModel
+    public class MovieSearchModel
     {
         public string? movieTitle { get; set; }
         public string? startYear { get; set; }

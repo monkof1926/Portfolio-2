@@ -7,5 +7,7 @@
         public int bookmarkPersonName { get; set; }
         public string? bookmarkMovieTconst { get; set; }
         public int bookmarkMoviePrimarytitlerl { get; set; }
+
+        public string? bookmarkMovieBID { get; set; }
     }
 }

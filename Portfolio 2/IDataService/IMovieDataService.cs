@@ -12,6 +12,6 @@ namespace DataLayer.IDataService
         bool UpdateMovie(Movie movie);
         bool DeleteMovie(string movieID);
         int GetNumberOfMovies();
-        //IList<MovieSearchModel> GetMovieSearches(string searchMovie);
+        IList<MovieSearchModel> GetMovieSearches(string searchMovie);
     }
 }

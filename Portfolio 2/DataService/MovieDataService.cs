@@ -64,18 +64,20 @@ namespace DataLayer.DataService
             using var db = new NorthwindContext();
             return db.title_basics.Count();
         }
-        /*public IList<MovieSearchModel> GetMovieSearches(string searchMovie)
+        public IList<MovieSearchModel> GetMovieSearches(string searchMovie)
         {
             using var db = new NorthwindContext();
+
             return db.title_basics
                 .Include(x => x.title)
-                .Where(x => x.title == search)
+                .Where(x => x.title == searchMovie)
                 .Select(x => new MovieSearchModel
                 {
-                    MovieTitle = x.title,
-                    MovieName = x.Movie.title
+                    movieTitle = x.title,
+                    //startYear = x.Movie.title
+
                 })
                 .ToList();
-        }*/
+        }
     }
 }

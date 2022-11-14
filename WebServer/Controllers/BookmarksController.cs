@@ -23,17 +23,24 @@ namespace WebServer.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet(Name = nameof(GetBookmarks))]
+        [HttpGet(Name = nameof(GetBookmarksPers))]
         public IActionResult GetBookmarks()
         {
-            var user = _bookmarkDataService.GetBookmarks().Select(x => x.BookmarksCreateModel(x));
+            var user = _bookmarkDataService.GetBookmarksPers().Select(BookmarksCreateModel);
+            return Ok(user);
+        }
+
+        [HttpGet(Name = nameof(GetBookmarks))]
+        public IActionResult GetBookmarksMov()
+        {
+            var user = _bookmarkDataService.GetBookmarksMov().Select(BookmarksCreateModel);
             return Ok(user);
         }
 
         [HttpGet("{bookmarkMoviePrimarytitlerl}", Name = nameof(GetBookmarks))]
         public IActionResult GetBookmarks(string bookmarkPersonBID)
         {
-            var book = _bookmarkDataService.GetBookmarks(bookmarkPersonBID);
+            var book = _bookmarkDataService.GetBookmarksPers(bookmarkPersonBID);
 
             if (book == null)
             {
@@ -52,7 +59,7 @@ namespace WebServer.Controllers
 
             _bookmarkDataService.CreateBookmarksMovie(book);
 
-            return CreatedAtRoute(null, BookmarksCreateModel));
+            return CreatedAtRoute(null, BookmarksCreateModel);
         }
 
 
@@ -70,8 +77,8 @@ namespace WebServer.Controllers
 
         private BookmarksModel BookmarksCreateModel(Bookmarks bookmarks)
         {
-            var model = _mapper.Map<UserModel>(bookmarks);
-            model.Url = _generator.GetUriByName(HttpContext, nameof(GetBookmarks), new { bookmarks.bookmarkMovieBID });
+            var model = _mapper.Map<BookmarksModel>(bookmarks);
+            model.Url = _generator.GetUriByName(HttpContext, nameof(GetBookmarksMov), new { bookmarks.bookmarkMovieBID });
             return model;
         }
 

@@ -29,23 +29,25 @@ namespace DataLayer.DataService
             
             return db.SaveChanges() > 0;
         }
-        public IList<Bookmarks> GetBookmarks()
+        public IList<Bookmarks> GetBookmarksPers()
         {
             using var db = new NorthwindContext();
             return db.name_bookmarks.ToList();
         }
-        public Bookmarks? GetBookmarks(string bookmarkPersonBID, string bookmarkMovieBID)
+        public IList<Bookmarks> GetBookmarksMov()
         {
             using var db = new NorthwindContext();
-            if (bookmarkMovieBID != null)
-            {
-                return db.name_bookmarks.Find(bookmarkMovieBID);
-            }
-            else{ 
-                return db.name_bookmarks.Find(bookmarkPersonBID); 
-            } 
-
-            
+            return db.title_bookmarks.ToList();
+        }
+        public Bookmarks? GetBookmarksMov(string bookmarkMovieBID)
+        {
+            using var db = new NorthwindContext();
+            return db.name_bookmarks.Find(bookmarkMovieBID);
+        }
+        public Bookmarks? GetBookmarksPers(string bookmarkPersonBID)
+        {
+            using var db = new NorthwindContext();
+            return db.name_bookmarks.Find(bookmarkPersonBID);
         }
         public bool UpdateBookmarksPerson(Bookmarks bookmarks)
         {

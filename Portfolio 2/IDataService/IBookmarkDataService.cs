@@ -11,8 +11,12 @@ namespace DataLayer.IDataService
 {
     public interface IBookmarkDataService
     {
-        IList<Bookmarks> GetBookmarks();
-        Bookmarks? GetBookmarks(string bookmarkPersonBID, string bookmarkMovieBID);
+        IList<Bookmarks> GetBookmarksMov();
+        IList<Bookmarks> GetBookmarksPers();
+
+        Bookmarks? GetBookmarksMov(string bookmarkMovieBID);
+        Bookmarks? GetBookmarksPers(string bookmarkPersonBID);
+
         void CreateBookmarksPerson(Bookmarks bookmarksP);
         bool UpdateBookmarksPerson(Bookmarks bookmarksP);
         bool DeleteBookmarksPerson(string bookmarkPersonBID);

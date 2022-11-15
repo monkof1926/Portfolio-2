@@ -65,7 +65,7 @@ namespace WebServer.Controllers
 
         private SearchHistoryModel SearchHistoryCreateModel(SearchHistory searchHistory)
         {
-            var model = _mapper.Map<UserModel>(searchHistory);
+            var model = _mapper.Map<SearchHistoryModel>(searchHistory);
             model.Url = _generator.GetUriByName(HttpContext, nameof(GetSearchHistories), new { searchHistory.searchOrder });
             return model;   
         }

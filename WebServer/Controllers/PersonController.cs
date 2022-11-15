@@ -3,6 +3,7 @@ using DataLayer.DataService;
 using DataLayer.Domain;
 using DataLayer.IDataService;
 using Microsoft.AspNetCore.Mvc;
+using WebServer.Models;
 
 
 namespace WebServer.Controllers
@@ -14,6 +15,8 @@ namespace WebServer.Controllers
         private IPersonDataService _personDataService;
         private readonly LinkGenerator _generator;
         private readonly IMapper _mapper;
+
+        private const int MaxpageSize = 125;
 
         public PersonController(IPersonDataService personDataService, LinkGenerator generator, IMapper mapper)
         {

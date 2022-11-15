@@ -25,15 +25,15 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetBookmarksPers))]
         public IActionResult GetBookmarksPers()
         {
-            var user = _bookmarkDataService.GetBookmarksPers().Select(BookmarksCreateModel);
-            return Ok(user);
+            var bookmark = _bookmarkDataService.GetBookmarksPers().Select(BookmarksCreateModel);
+            return Ok(bookmark);
         }
 
         [HttpGet(Name = nameof(GetBookmarks))]
         public IActionResult GetBookmarksMov()
         {
-            var user = _bookmarkDataService.GetBookmarksMov().Select(BookmarksCreateModel);
-            return Ok(user);
+            var bookmark = _bookmarkDataService.GetBookmarksMov().Select(BookmarksCreateModel);
+            return Ok(bookmark);
         }
 
         [HttpGet("{bookmarkMoviePrimarytitlerl}", Name = nameof(GetBookmarks))]

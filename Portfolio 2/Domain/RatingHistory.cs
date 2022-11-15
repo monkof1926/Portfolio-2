@@ -14,5 +14,6 @@ namespace DataLayer.Domain
         public string ratingHisPersonNID { get; set; }
         public float ratingHisPersonRating { get; set; }
         public string ratingHisPersonNconst { get; set; }
+        public string ratingHisUserID { get; set; }
     }
 }

@@ -66,18 +66,17 @@ namespace DataLayer.DataService
             using var db = new NorthwindContext();
             return db.name_basics.Count();
         }
-        /*public IList<PersonSearchModel> GetPersonSearches(string searchPerson)
+        public IList<PersonSearchModel> GetPersonSearches(string searchPerson)
         {
             using var db = new NorthwindContext();
             return db.name_basics
                 .Include(x => x.fullName)
-                .Where(x => x.fullName == search)
+                .Where(x => x.fullName == searchPerson)
                 .Select(x => new PersonSearchModel
                 {
-                    PersonTitle = x.fullName,
-                    PersonName = x.Person.fullName
+                    PersonFullName = x.fullName
                 })
                 .ToList();
-        }*/
+        }
     }
 }

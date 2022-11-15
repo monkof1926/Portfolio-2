@@ -59,35 +59,47 @@ namespace DataLayer
             modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkMovieBID).HasColumnName("tbookid");
             modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkMovieTconst).HasColumnName("tconst");
             modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkMoviePrimarytitle).HasColumnName("primarytitle");
+            modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkUserID).HasColumnName("userid");
+
 
 
             modelBuilder.Entity<Rating>().ToTable("name_ratings");
             modelBuilder.Entity<Rating>().Property(x => x.ratingnconst).HasColumnName("nconst");
             modelBuilder.Entity<Rating>().Property(x => x.ratingAvergePerson).HasColumnName("averagerating");
             modelBuilder.Entity<Rating>().Property(x => x.ratingNumPerson).HasColumnName("numvotes");
+            modelBuilder.Entity<Rating>().Property(x => x.ratingUserID).HasColumnName("userid");
+
 
 
             modelBuilder.Entity<RatingHistory>().ToTable("name_rating_hist");
             modelBuilder.Entity<RatingHistory>().Property(x => x.ratingHisPersonNID).HasColumnName("nrateid");
             modelBuilder.Entity<RatingHistory>().Property(x => x.ratingHisPersonNconst).HasColumnName("nconst");
             modelBuilder.Entity<RatingHistory>().Property(x => x.ratingHisPersonRating).HasColumnName("rating");
+            modelBuilder.Entity<RatingHistory>().Property(x => x.ratingHisUserID).HasColumnName("userid");
+
 
 
             modelBuilder.Entity<Rating>().ToTable("title_ratings");
             modelBuilder.Entity<Rating>().Property(x => x.ratingtonst).HasColumnName("tconst");
             modelBuilder.Entity<Rating>().Property(x => x.ratingAvergeTitle).HasColumnName("averagerating");
             modelBuilder.Entity<Rating>().Property(x => x.ratingNumTitle).HasColumnName("numvotes");
+            
+
+
 
 
             modelBuilder.Entity<RatingHistory>().ToTable("title_rating_hist");
             modelBuilder.Entity<RatingHistory>().Property(x => x.ratingHisMovTID).HasColumnName("trateid");
             modelBuilder.Entity<RatingHistory>().Property(x => x.ratingHisMovTconst).HasColumnName("tconst");
             modelBuilder.Entity<RatingHistory>().Property(x => x.ratingHisMovRating).HasColumnName("rating");
+            
+
 
 
             modelBuilder.Entity<SearchHistory>().ToTable("searchhistory");
             modelBuilder.Entity<SearchHistory>().Property(x => x.searchWord).HasColumnName("searchword");
             modelBuilder.Entity<SearchHistory>().Property(x => x.searchOrder).HasColumnName("searchid");
+            //Add userID here, when added to the database.
         }
 
     }

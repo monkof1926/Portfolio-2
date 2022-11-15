@@ -105,13 +105,13 @@ namespace WebServer.Controllers
         private RatingHistoryModel RatingHistoryCreateModelPerson(RatingHistory ratingHistory)
         {
             var model = _mapper.Map<RatingHistoryModel>(ratingHistory);
-            model.Url = _generator.GetUriByName(HttpContext, nameof(GetRatingHistoryPers), new { ratingHistory.ratingHisPersonNID });
+            model.Url = _generator.GetUriByName(HttpContext, nameof(GetRatingHistoryPerson), new { ratingHistory.ratingHisPersonNID });
             return model;
         }
         private RatingHistoryModel RatingHistoryCreateModelMovie(RatingHistory ratingHistory)
         {
             var model = _mapper.Map<RatingHistoryModel>(ratingHistory);
-            model.Url = _generator.GetUriByName(HttpContext, nameof(GetRatingHistoryMov), new { ratingHistory.ratingHisMovTID });
+            model.Url = _generator.GetUriByName(HttpContext, nameof(GetRatingHistoryMovie), new { ratingHistory.ratingHisMovTID });
             return model;
         }
 

@@ -14,6 +14,7 @@ namespace DataLayer.Domain
         public string? bookmarkMovieBID { get; set; }
         public string? bookmarkMovieTconst { get; set; }
         public string? bookmarkMoviePrimarytitle { get; set; }
+        public string? bookmarkUserID { get; set; }
 
     }
 }

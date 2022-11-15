@@ -31,7 +31,7 @@ namespace WebServer.Controllers
             return Ok(Paging(page, pageSize, total, movie));
         }
 
-        [HttpGet("{username}", Name = nameof(GetMovies))]
+        [HttpGet("{title}", Name = nameof(GetMovies))]
         public IActionResult GetMovies(string movieID)
         {
             var movie = _movieDataService.GetMovies(movieID);
@@ -46,10 +46,10 @@ namespace WebServer.Controllers
             return Ok(model);
         }
 
-        [HttpDelete("{movie}")]
-        public IActionResult DeleteMovie(string movieId)
+        [HttpDelete("{movieID}")]
+        public IActionResult DeleteMovie(string movieID)
         {
-            var deleted = _movieDataService.DeleteMovie(movieId);
+            var deleted = _movieDataService.DeleteMovie(movieID);
 
             if (!deleted)
             {

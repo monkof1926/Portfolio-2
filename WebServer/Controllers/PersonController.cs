@@ -32,7 +32,7 @@ namespace WebServer.Controllers
             return Ok(Paging(page, pageSize, total, person));
         }
 
-        [HttpGet("{username}", Name = nameof(GetPersons))]
+        [HttpGet("{fullname}", Name = nameof(GetPersons))]
         public IActionResult GetPersons(string nameID)
         {
             var person = _personDataService.GetPersons(nameID);
@@ -47,7 +47,7 @@ namespace WebServer.Controllers
             return Ok(model);
         }
 
-        [HttpDelete("{person}")]
+        [HttpDelete("{nameID}")]
         public IActionResult DeletePerson(string nameID)
         {
             var deleted = _personDataService.DeletePerson(nameID);

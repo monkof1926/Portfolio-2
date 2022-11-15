@@ -1,4 +1,6 @@
 ﻿using DataLayer.Domain;
+using DataLayer.Models;
+
 
 namespace DataLayer.IDataService
 {
@@ -10,5 +12,6 @@ namespace DataLayer.IDataService
         void CreateSearchHistory(SearchHistory searchHistory);
         bool UpdateSearchHistory(SearchHistory searchHistoryM);
         bool DeleteSearchHistory(int? searchOrder);
+        IList<SearchHistorySearchModel> GetSearcHistoryByUser(string search);
     }
 }

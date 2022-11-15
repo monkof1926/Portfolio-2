@@ -1,4 +1,5 @@
 ﻿using DataLayer.Domain;
+using DataLayer.Models;
 
 
 namespace DataLayer.IDataService
@@ -15,5 +16,6 @@ namespace DataLayer.IDataService
         void CreateRatingHistoryMovie(RatingHistory ratingHistoryM);
         bool UpdateRatingHistoryMovie(RatingHistory ratingHistoryM);
         bool DeleteRatingHistoryMovie(string ratingHisMovTID);
+        IList<RatingHistorySearchModel> GetRatingHisByUser(string search);
     }
 }

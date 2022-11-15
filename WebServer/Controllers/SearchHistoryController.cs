@@ -25,10 +25,10 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetSearchHistories))]
         public IActionResult GetSearchHistories()
         {
-            var user = _searchHistoryDataService.GetSearchHistories().Select(SearchHistoryCreateModel);
-            return Ok(user);
+            var search = _searchHistoryDataService.GetSearchHistories().Select(SearchHistoryCreateModel);
+            return Ok(search);
         }
-        [HttpGet("{username}", Name = nameof(GetSearchHistories))]
+        [HttpGet("{searchOrder}", Name = nameof(GetSearchHistories))]
         public IActionResult GetSearchHistories(int searchOrder)
         {
             var searchHistory = _searchHistoryDataService.GetSearchHistories(searchOrder);
@@ -52,7 +52,7 @@ namespace WebServer.Controllers
             return CreatedAtRoute(null, SearchHistoryCreateModel); ;
         }
         [HttpDelete("{searchHistoryM}")]
-        public IActionResult DeleteUser(int searchOrder)
+        public IActionResult DeleteSearchHistory(int searchOrder)
         {
             var deleted = _searchHistoryDataService.DeleteSearchHistory(searchOrder);
 

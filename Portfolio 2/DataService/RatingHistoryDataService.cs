@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using DataLayer.Domain;
 using DataLayer.IDataService;
+using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.DataService
@@ -96,6 +98,18 @@ namespace DataLayer.DataService
             dbRatingHisMovie.ratingHisMovTconst = ratingHistory.ratingHisMovTconst;
             db.SaveChanges();
             return true;
+        }
+        public IList<RatingHistorySearchModel> GetRatingHisByUser(string search)
+        {
+            using var db = new NorthwindContext();
+            return db.name_ratings_hist
+                .Include(x => x.ratingHisUserID)
+                .Where(x => x.ratingHisUserID == search)
+                .Select(x => new RatingHistorySearchModel
+                {
+                    ratingHisUserID = x.ratingHisUserID
+                })
+                .ToList();
         }
     }
 }

@@ -8,6 +8,7 @@ using DataLayer.Models;
 using DataLayer.IDataService;
 
 
+
 namespace DataLayer.DataService 
 {
     public class UserDataService : IUserDataService
@@ -28,7 +29,7 @@ namespace DataLayer.DataService
             }
             else { return false; }
 
-            return db.SaveChanges() > 0;
+            return db.SaveChanges() > null;
         }
         public IList<User> GetUsers()
 
@@ -51,10 +52,18 @@ namespace DataLayer.DataService
             using var db = new NorthwindContext();
             var dbUser = db.users.Find(user.username);
             if (dbUser == null) return false;
-            dbUser.username = user.username;
             dbUser.password = user.password;
             db.SaveChanges();
             return true;
+        }
+        public User CreateUser(string username, string password, string salt)
+        {
+            var user = new User
+            {
+                username = username,
+                password = password,
+                salt = salt
+            };
         }
     }
 }

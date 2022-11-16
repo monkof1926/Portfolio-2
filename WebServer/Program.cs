@@ -1,6 +1,7 @@
 using DataLayer.Domain;
 using DataLayer.DataService;
 using DataLayer.IDataService;
+using WebServer.Middleware;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,16 +21,7 @@ builder.Services.AddSingleton<ISearchHistoryDataService, SearchHistoryDataServic
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
+app.UseAuth();
 
 app.MapControllers();
 

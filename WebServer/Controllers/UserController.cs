@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using DataLayer;
 using DataLayer.Domain;
 using DataLayer.IDataService;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +28,12 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetUsers))]
         public IActionResult GetUsers()
         {
+            var username = GetUser();
+
+            if (username == null)
+            {
+                return Unauthorized();
+            }
             var user = _userDataService.GetUsers().Select(UserCreateModel);
             return Ok(user);
         }
@@ -37,7 +42,14 @@ namespace WebServer.Controllers
         public IActionResult GetUsers(string username)
         {
             var user = _userDataService.GetUsers(username);
-            
+
+            var usernames = GetUser();
+
+            if (usernames == null)
+            {
+                return Unauthorized();
+            }
+
             if (user == null)
             {
                 return NotFound();
@@ -51,6 +63,12 @@ namespace WebServer.Controllers
         [HttpPost]
         public IActionResult CreateUser(UserCreateModel model)
         {
+            var username = GetUser();
+
+            if (username == null)
+            {
+                return Unauthorized();
+            }
             var user = _mapper.Map<User>(model);
 
             _userDataService.CreateUser(user);
@@ -61,6 +79,12 @@ namespace WebServer.Controllers
         [HttpDelete("{username}")]
         public IActionResult DeleteUser(string username)
         {
+            var usernames = GetUser();
+
+            if (usernames == null)
+            {
+                return Unauthorized();
+            }
             var deleted = _userDataService.DeleteUser(username);
 
             if (!deleted)
@@ -84,7 +108,12 @@ namespace WebServer.Controllers
                 nameof(GetUsers), new { page, pageSize });
 
         }
+        private User? GetUser()
+        {
+            return HttpContext.Items["User"] as User;
+        }
 
        
     }
 }
+    

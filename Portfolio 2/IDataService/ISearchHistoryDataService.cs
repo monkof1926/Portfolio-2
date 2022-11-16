@@ -12,7 +12,7 @@ namespace DataLayer.IDataService
         void CreateSearchHistory(SearchHistory searchHistory);
         bool UpdateSearchHistory(SearchHistory searchHistoryM);
         bool DeleteSearchHistory(int? searchOrder);
-        int GetNumberSearchHistory();
-        IList<SearchHistorySearchModel> GetSearcHistoryByUser(string search);
+        //int GetNumberSearchHistory();
+        IList<SearchHistorySearchModel> GetSearchHistoryByUser(string search);
     }
 }

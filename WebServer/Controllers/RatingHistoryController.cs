@@ -15,25 +15,31 @@ namespace WebServer.Controllers
         private readonly LinkGenerator _generator;
         private readonly IMapper _mapper;
 
+        private const int MaxpageSize = 125;
+
         public RatingHistoryController(IRatingHistoryDataService ratingHistoryDataService, LinkGenerator generator, IMapper mapper)
         {
             _ratingHistoryDataService = ratingHistoryDataService;
             _generator = generator;
             _mapper = mapper;
         }
+
         [HttpGet(Name = nameof(GetRatingsHistoryPerson))]
-        public IActionResult GetRatingsHistoryPerson()
+        public IActionResult GetRatingsHistoryPerson(int page = 0, int pageSize = 15)
         {
-            var rating = _ratingHistoryDataService.GetRatingHistoriesPerson().Select(RatingHistoryCreateModelPerson);
-            return Ok(rating);
+            var rating = _ratingHistoryDataService.GetRatingHistoryPerson(page, pageSize).Select(RatingHistoryCreateModelPerson);
+            var total = _ratingHistoryDataService.GetNumberOfUserRatingHist();
+            return Ok(PagingPerson(page, pageSize, total, rating));
         }
 
         [HttpGet(Name = nameof(GetRatingsHistoryMovie))]
-        public IActionResult GetRatingsHistoryMovie()
+        public IActionResult GetRatingsHistoryMovie(int page = 0, int pageSize = 15)
         {
-            var rating = _ratingHistoryDataService.GetRatingHistoriesMovie().Select(RatingHistoryCreateModelMovie);
-            return Ok(rating);
+            var rating = _ratingHistoryDataService.GetRatingHistoryMovie(page, pageSize).Select(RatingHistoryCreateModelMovie);
+            var total = _ratingHistoryDataService.GetNumberOfUserRatingHist();
+            return Ok(PagingMovie(page, pageSize, total, rating));
         }
+
         [HttpGet("{ratingHisPersonNID}", Name = nameof(GetRatingsHistoryPerson))]
         public IActionResult GetRatingHistoryPerson(string ratingnconst)
         {
@@ -101,6 +107,58 @@ namespace WebServer.Controllers
                 return NotFound();
             }
             return Ok();
+        }
+        private object PagingPerson<T>(int page, int pageSize, int total, IEnumerable<T> items)
+        {
+            pageSize = pageSize > MaxpageSize ? MaxpageSize : pageSize;
+
+            var pages = (int)Math.Ceiling((double)total / (double)pageSize);
+
+            var first = total > 0 ? CreateLinkPerson(0, pageSize) : null;
+
+            var prev = page > 0 ? CreateLinkPerson(page - 1, pageSize) : null;
+
+            var current = CreateLinkPerson(page, pageSize);
+
+            var next = page < page - 1 ? CreateLinkPerson(page + 1, pageSize) : null;
+
+            var result = new
+            {
+                first,
+                prev,
+                next,
+                current,
+                total,
+                pages,
+                items
+            };
+            return result;
+        }
+        private object PagingMovie<T>(int page, int pageSize, int total, IEnumerable<T> items)
+        {
+            pageSize = pageSize > MaxpageSize ? MaxpageSize : pageSize;
+
+            var pages = (int)Math.Ceiling((double)total / (double)pageSize);
+
+            var first = total > 0 ? CreateLinkMovie(0, pageSize) : null;
+
+            var prev = page > 0 ? CreateLinkMovie(page - 1, pageSize) : null;
+
+            var current = CreateLinkMovie(page, pageSize);
+
+            var next = page < page - 1 ? CreateLinkMovie(page + 1, pageSize) : null;
+
+            var result = new
+            {
+                first,
+                prev,
+                next,
+                current,
+                total,
+                pages,
+                items
+            };
+            return result;
         }
         private RatingHistoryModel RatingHistoryCreateModelPerson(RatingHistory ratingHistory)
         {

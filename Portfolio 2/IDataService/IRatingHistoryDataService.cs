@@ -16,6 +16,7 @@ namespace DataLayer.IDataService
         void CreateRatingHistoryMovie(RatingHistory ratingHistoryM);
         bool UpdateRatingHistoryMovie(RatingHistory ratingHistoryM);
         bool DeleteRatingHistoryMovie(string ratingHisMovTID);
+        int GetNumberOfUserRatingHist();
         IList<RatingHistorySearchModel> GetRatingHisByUser(string search);
     }
 }

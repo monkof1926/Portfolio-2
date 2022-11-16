@@ -16,6 +16,8 @@ namespace WebServer.Controllers
         private readonly LinkGenerator _generator;
         private readonly IMapper _mapper;
 
+        private const int MaxpageSize = 125;
+
         public SearchHistoryController(ISearchHistoryDataService searchHistoryDataService, LinkGenerator generator, IMapper mapper)
         {
             _searchHistoryDataService = searchHistoryDataService;
@@ -23,10 +25,11 @@ namespace WebServer.Controllers
             _mapper = mapper;
         }
         [HttpGet(Name = nameof(GetSearchHistories))]
-        public IActionResult GetSearchHistories()
+        public IActionResult GetSearchHistories(int page = 0, int pageSize = 15)
         {
-            var search = _searchHistoryDataService.GetSearchHistories().Select(SearchHistoryCreateModel);
-            return Ok(search);
+            var search = _searchHistoryDataService.GetSearchHistories(page,pageSize).Select(SearchHistoryCreateModel);
+            var total = _searchHistoryDataService.GetNumberOfSearchHistories();
+            return Ok(Paging(page, pageSize, total, search));
         }
         [HttpGet("{searchOrder}", Name = nameof(GetSearchHistories))]
         public IActionResult GetSearchHistories(int searchOrder)
@@ -61,6 +64,33 @@ namespace WebServer.Controllers
                 return NotFound();
             }
             return Ok();
+        }
+
+        private object Paging<T>(int page, int pageSize, int total, IEnumerable<T> items)
+        {
+            pageSize = pageSize > MaxpageSize ? MaxpageSize : pageSize;
+
+            var pages = (int)Math.Ceiling((double)total / (double)pageSize);
+
+            var first = total > 0 ? CreateLink(0, pageSize) : null;
+
+            var prev = page > 0 ? CreateLink(page - 1, pageSize) : null;
+
+            var current = CreateLink(page, pageSize);
+
+            var next = page < page - 1 ? CreateLink(page + 1, pageSize) : null;
+
+            var result = new
+            {
+                first,
+                prev,
+                next,
+                current,
+                total,
+                pages,
+                items
+            };
+            return result;
         }
 
         private SearchHistoryModel SearchHistoryCreateModel(SearchHistory searchHistory)

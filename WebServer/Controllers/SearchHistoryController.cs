@@ -27,6 +27,12 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetSearchHistories))]
         public IActionResult GetSearchHistories(int page = 0, int pageSize = 15)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var search = _searchHistoryDataService.GetSearchHistories(page,pageSize).Select(SearchHistoryCreateModel);
             var total = _searchHistoryDataService.GetNumberOfSearchHistories();
             return Ok(Paging(page, pageSize, total, search));
@@ -34,6 +40,12 @@ namespace WebServer.Controllers
         [HttpGet("{searchOrder}", Name = nameof(GetSearchHistories))]
         public IActionResult GetSearchHistories(int searchOrder)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var searchHistory = _searchHistoryDataService.GetSearchHistories(searchOrder);
 
             if (searchHistory == null)
@@ -48,6 +60,12 @@ namespace WebServer.Controllers
         [HttpPost]
         public IActionResult CreateSearchHistory(SearchHistory model)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var searchHistory = _mapper.Map<SearchHistory>(model);
 
             _searchHistoryDataService.CreateSearchHistory(searchHistory);
@@ -57,6 +75,12 @@ namespace WebServer.Controllers
         [HttpDelete("{searchHistoryM}")]
         public IActionResult DeleteSearchHistory(int searchOrder)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var deleted = _searchHistoryDataService.DeleteSearchHistory(searchOrder);
 
             if (!deleted)
@@ -106,6 +130,10 @@ namespace WebServer.Controllers
             HttpContext,
                 nameof(GetSearchHistories), new { page, pageSize });
 
+        }
+        private User? GetUser()
+        {
+            return HttpContext.Items["User"] as User;
         }
     }
 }

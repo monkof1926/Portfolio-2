@@ -24,6 +24,12 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetRatingsPerson))]
         public IActionResult GetRatingsPerson()
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var rating = _ratingDataService.GetRatingsPers().Select(RatingCreateModelPerson);
             return Ok(rating);
         }
@@ -31,12 +37,24 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetRatingsMovie))]
         public IActionResult GetRatingsMovie()
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var rating = _ratingDataService.GetRatingsMov().Select(RatingCreateModelMovie);
             return Ok(rating);
         }
         [HttpGet("{ratingnconst}", Name = nameof(GetRatingsPerson))]
         public IActionResult GetRatingsPerson(string ratingnconst)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var rating = _ratingDataService.GetRatingsPers (ratingnconst);
 
             if (rating == null)
@@ -51,6 +69,12 @@ namespace WebServer.Controllers
         [HttpGet("{ratingtonst}", Name = nameof(GetRatingsMovie))]
         public IActionResult GetRatingMovie(string ratingtonst)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var rating = _ratingDataService.GetRatingsMov(ratingtonst);
 
             if (rating == null)
@@ -65,6 +89,12 @@ namespace WebServer.Controllers
         [HttpPost]
         public IActionResult CreateRatingPerson(RatingCreateModel model)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var rating = _mapper.Map<Rating>(model);
 
             _ratingDataService.CreateRatingPerson(rating);
@@ -74,6 +104,12 @@ namespace WebServer.Controllers
         [HttpPost]
         public IActionResult CreateRatingMovie(RatingCreateModel model)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var rating = _mapper.Map<Rating>(model);
 
             _ratingDataService.CreateRatingMovie(rating);
@@ -83,6 +119,12 @@ namespace WebServer.Controllers
         [HttpDelete("{ratingnconst}")]
         public IActionResult DeleteRatingPerson(string ratingnconst)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var deleted = _ratingDataService.DeleteRatingPerson(ratingnconst);
 
             if (!deleted)
@@ -94,6 +136,12 @@ namespace WebServer.Controllers
         [HttpDelete("{ratingtonst}")]
         public IActionResult DeleteRatingMovie(string ratingtonst)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var deleted = _ratingDataService.DeleteRatingMovie(ratingtonst);
 
             if (!deleted)
@@ -127,6 +175,10 @@ namespace WebServer.Controllers
             return _generator.GetUriByName(
             HttpContext,
                 nameof(GetRatingsMovie), new { page, pageSize });
+        }
+        private User? GetUser()
+        {
+            return HttpContext.Items["User"] as User;
         }
     }
 }

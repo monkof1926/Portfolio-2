@@ -27,6 +27,12 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetRatingsHistoryPerson))]
         public IActionResult GetRatingsHistoryPerson(int page = 0, int pageSize = 15)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var rating = _ratingHistoryDataService.GetRatingHistoryPerson(page, pageSize).Select(RatingHistoryCreateModelPerson);
             var total = _ratingHistoryDataService.GetNumberOfUserRatingHist();
             return Ok(PagingPerson(page, pageSize, total, rating));
@@ -35,6 +41,12 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetRatingsHistoryMovie))]
         public IActionResult GetRatingsHistoryMovie(int page = 0, int pageSize = 15)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var rating = _ratingHistoryDataService.GetRatingHistoryMovie(page, pageSize).Select(RatingHistoryCreateModelMovie);
             var total = _ratingHistoryDataService.GetNumberOfUserRatingHist();
             return Ok(PagingMovie(page, pageSize, total, rating));
@@ -43,6 +55,12 @@ namespace WebServer.Controllers
         [HttpGet("{ratingHisPersonNID}", Name = nameof(GetRatingsHistoryPerson))]
         public IActionResult GetRatingHistoryPerson(string ratingnconst)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var rating = _ratingHistoryDataService.GetRatingHistoryPerson(ratingnconst);
 
             if (rating == null)
@@ -57,6 +75,12 @@ namespace WebServer.Controllers
         [HttpGet("{ratingHisMovTID}", Name = nameof(GetRatingsHistoryMovie))]
         public IActionResult GetRatingHistoryMovie(string ratingtonst)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var rating = _ratingHistoryDataService.GetRatingHistoryMovie(ratingtonst);
 
             if (rating == null)
@@ -71,6 +95,12 @@ namespace WebServer.Controllers
         [HttpPost]
         public IActionResult CreateRatingHistoryPerson(RatingHistoryCreateModel model)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var ratingHis = _mapper.Map<RatingHistory>(model);
 
             _ratingHistoryDataService.CreateRatingHistoryPerson(ratingHis);
@@ -80,6 +110,12 @@ namespace WebServer.Controllers
         [HttpPost]
         public IActionResult CreateRatingHistoryMovie(RatingHistoryCreateModel model)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var rating = _mapper.Map<RatingHistory>(model);
 
             _ratingHistoryDataService.CreateRatingHistoryMovie(rating);
@@ -89,6 +125,12 @@ namespace WebServer.Controllers
         [HttpDelete("{ratingHisPersonNID}")]
         public IActionResult DeleteRatingHistoryPerson(string ratingHisPersonNID)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var deleted = _ratingHistoryDataService.DeleteRatingHistoryPerson(ratingHisPersonNID);
 
             if (!deleted)
@@ -100,6 +142,12 @@ namespace WebServer.Controllers
         [HttpDelete("{ratingHisMovTID}")]
         public IActionResult DeleteRatingHistoryMovie(string ratingHisMovTID)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var deleted = _ratingHistoryDataService.DeleteRatingHistoryMovie(ratingHisMovTID);
 
             if (!deleted)
@@ -184,6 +232,10 @@ namespace WebServer.Controllers
             return _generator.GetUriByName(
             HttpContext,
                 nameof(GetRatingsHistoryMovie), new { page, pageSize });
+        }
+        private User? GetUser()
+        {
+            return HttpContext.Items["User"] as User;
         }
     }
 }

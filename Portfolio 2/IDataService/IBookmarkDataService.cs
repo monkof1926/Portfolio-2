@@ -23,5 +23,6 @@ namespace DataLayer.IDataService
         void CreateBookmarksMovie(Bookmarks bookmarksM);
         bool UpdateBookmarksMovie(Bookmarks bookmarksM);
         bool DeleteBookmarksMovie(string bookmarkMovieBID);
+        User CreateUser(string username, string password = null, string salt = null);
     }
 }

@@ -77,5 +77,14 @@ namespace DataLayer.DataService
                 })
                 .ToList();
         }
+        public User CreateUser(string username, string password, string salt)
+        {
+            var user = new User
+            {
+                username = username,
+                password = password,
+                salt = salt
+            };
+        }
     }
 }

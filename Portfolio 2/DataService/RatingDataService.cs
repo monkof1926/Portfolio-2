@@ -89,5 +89,14 @@ namespace DataLayer.DataService
             db.SaveChanges();
             return true;
         }
+        public User CreateUser(string username, string password, string salt)
+        {
+            var user = new User
+            {
+                username = username,
+                password = password,
+                salt = salt
+            };
+        }
     }
 }

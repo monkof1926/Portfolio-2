@@ -18,5 +18,6 @@ namespace DataLayer.IDataService
         bool DeleteRatingHistoryMovie(string ratingHisMovTID);
         int GetNumberOfUserRatingHist();
         IList<RatingHistorySearchModel> GetRatingHisByUser(string search);
+        User CreateUser(string username, string password = null, string salt = null);
     }
 }

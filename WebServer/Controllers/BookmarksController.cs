@@ -25,6 +25,12 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetBookmarksPers))]
         public IActionResult GetBookmarksPers()
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var bookmark = _bookmarkDataService.GetBookmarksPers().Select(BookmarksCreateModel);
             return Ok(bookmark);
         }
@@ -32,6 +38,12 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetBookmarks))]
         public IActionResult GetBookmarksMov()
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var bookmark = _bookmarkDataService.GetBookmarksMov().Select(BookmarksCreateModel);
             return Ok(bookmark);
         }
@@ -39,6 +51,12 @@ namespace WebServer.Controllers
         [HttpGet("{bookmarkMoviePrimarytitlerl}", Name = nameof(GetBookmarks))]
         public IActionResult GetBookmarks(string bookmarkPersonBID)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var book = _bookmarkDataService.GetBookmarksPers(bookmarkPersonBID);
 
             if (book == null)
@@ -54,6 +72,12 @@ namespace WebServer.Controllers
         [HttpPost]
         public IActionResult CreateBookmarks(BookmarksCreateModel model)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var book = _mapper.Map<Bookmarks>(model);
 
             _bookmarkDataService.CreateBookmarksMovie(book);
@@ -65,6 +89,12 @@ namespace WebServer.Controllers
         [HttpDelete("{bookmarkMovieBID}")]
         public IActionResult DeleteBookmarkMovie(string bookmarkMovieBID)
         {
+            var user = GetUser();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var deleted = _bookmarkDataService.DeleteBookmarksMovie(bookmarkMovieBID);
 
             if (!deleted)
@@ -87,6 +117,10 @@ namespace WebServer.Controllers
             HttpContext,
                 nameof(GetBookmarks), new { page, pageSize });
 
+        }
+        private User? GetUser()
+        {
+            return HttpContext.Items["User"] as User;
         }
 
     }

@@ -14,5 +14,6 @@ namespace DataLayer.IDataService
         bool DeleteSearchHistory(int? searchOrder);
         //int GetNumberSearchHistory();
         IList<SearchHistorySearchModel> GetSearchHistoryByUser(string search);
+        User CreateUser(string username, string password = null, string salt = null);
     }
 }

@@ -14,5 +14,6 @@ namespace DataLayer.IDataService
         void CreateRatingMovie(Rating ratingM);
         bool UpdateRatingMovie(Rating ratingM);
         bool DeleteRatingMovie(string ratingtonst);
+        User CreateUser(string username, string password = null, string salt = null);
     }
 }

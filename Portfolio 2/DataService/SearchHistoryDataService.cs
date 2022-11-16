@@ -41,14 +41,10 @@ namespace DataLayer.DataService
                 .OrderBy(x => x.searchOrder)
                 .ToList();
         }
-        public SearchHistory? GetSearchHistories(int? searchOrder)
+        public SearchHistory? GetSearchHistories(int searchOrder)
         {
             using var db = new NorthwindContext();
-            if (searchOrder != null)
-            {
-                return db.searchhistory.Find(searchOrder);
-            }
-            return null;
+            return db.searchhistory.Find(searchOrder);
         }
         public bool UpdateSearchHistory(SearchHistory searchHistoryM)
         {

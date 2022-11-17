@@ -7,16 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
+using DataLayer.Domain;
 
-
-namespace Portfolio_2.SqlFunctions
+namespace DataLayer.SqlFunctions
 {
-    internal class SearchFunc 
+    public class SearchFunc 
     {
-        //simplesearch 1 varchar case 1
-        //namesearch 2 varchar case 2
-        //bmsearch 4 varchar case 3
-        //structuredStringsearch 4 varchar case 4
         static void UseEntityFramework(
             string connectionstring,
             int type,
@@ -31,31 +27,38 @@ namespace Portfolio_2.SqlFunctions
             switch (type) 
             {
                 case 1:
-                    var result1 = ctx.Searchresults.FromSqlInterpolated($"select * from simplesearcher({searchword1})");
+                    var result1 = ctx.simplesearcher.FromSqlInterpolated($"select * from simplesearcher({searchword1})");
                     foreach (var searchresult in result1) 
                     {
-                        Console.WriteLine($"{searchresult.something}, {searchresult.somethingelse}");
+                        Console.WriteLine($"{searchresult.tconst}, {searchresult.title}");
                     }
                     break;
                 case 2:
-                    var result2 = ctx.Searchresults.FromSqlInterpolated($"select * from namesearch({searchword1},{searchword2})");
+                    var result2 = ctx.name_search.FromSqlInterpolated($"select * from namesearch({searchword1},{searchword2})");
                     foreach (var searchresult in result2)
                     {
-                        Console.WriteLine($"{searchresult.something}, {searchresult.somethingelse}");
+                        Console.WriteLine($"{searchresult.pname}, {searchresult.nconst}");
                     }
                     break;
                 case 3:
-                    var result3 = ctx.Searchresults.FromSqlInterpolated($"select * from best_match_search({searchword1},{searchword2},{searchword3},{searchword4})");
+                    var result3 = ctx.best_match_search.FromSqlInterpolated($"select * from best_match_search({searchword1},{searchword2},{searchword3},{searchword4})");
                     foreach (var searchresult in result3)
                     {
-                        Console.WriteLine($"{searchresult.something}, {searchresult.somethingelse}");
+                        Console.WriteLine($"{searchresult.rank}, {searchresult.tconst}, {searchresult.title}");
                     }
                     break;
                 case 4:
-                    var result4 = ctx.Searchresults.FromSqlInterpolated($"select * from structured_string_search({searchword1},{searchword2},{searchword3},{searchword4})");
+                    var result4 = ctx.structured_string_search.FromSqlInterpolated($"select * from structured_string_search({searchword1},{searchword2},{searchword3},{searchword4})");
                     foreach (var searchresult in result4)
                     {
-                        Console.WriteLine($"{searchresult.something}, {searchresult.somethingelse}");
+                        Console.WriteLine($"{searchresult.tconst}, {searchresult.title}");
+                    }
+                    break;
+                case 5:
+                    var result5 = ctx.structured_string_search.FromSqlInterpolated($"select * from exact_match_search({searchword1},{searchword2},{searchword3},{searchword4})");
+                    foreach (var searchresult in result5)
+                    {
+                        Console.WriteLine($"{searchresult.tconst}, {searchresult.title}, {searchresult.rank}");
                     }
                     break;
                 default:

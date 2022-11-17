@@ -1,5 +1,6 @@
 ﻿using DataLayer.Domain;
 using Microsoft.EntityFrameworkCore;
+using DataLayer.SqlFunctions;
 
 namespace DataLayer
 {
@@ -15,6 +16,12 @@ namespace DataLayer
         public DbSet<RatingHistory> name_ratings_hist { get; set; }
         public DbSet<RatingHistory> title_ratings_hist { get; set; }
         public DbSet<SearchHistory> searchhistory { get; set; }
+        public DbSet<SearchResult> best_match_search { get; set; }
+        public DbSet<SearchResult> exact_match_search { get; set; }
+        public DbSet<SearchResult> name_search { get; set; }
+        public DbSet<SearchResult> simplesearcher { get; set; }
+        public DbSet<SearchResult> structured_string_search { get; set; }
+
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -100,7 +107,16 @@ namespace DataLayer
             modelBuilder.Entity<SearchHistory>().Property(x => x.searchWord).HasColumnName("searchword");
             modelBuilder.Entity<SearchHistory>().Property(x => x.searchOrder).HasColumnName("searchid");
             //Add userID here, when added to the database.
+
+
+            modelBuilder.Entity<SearchResult>().HasNoKey();
+            modelBuilder.Entity<SearchResult>().Property(x => x.tconst).HasColumnName("t_const");
+            modelBuilder.Entity<SearchResult>().Property(x => x.rank).HasColumnName("rank1");
+            modelBuilder.Entity<SearchResult>().Property(x => x.title).HasColumnName("title");
+            modelBuilder.Entity<SearchResult>().Property(x => x.nconst).HasColumnName("n_const");
+            modelBuilder.Entity<SearchResult>().Property(x => x.pname).HasColumnName("pname");
         }
+
 
     }
    

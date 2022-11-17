@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Portfolio_2.SqlFunctions
+namespace DataLayer.SqlFunctions
 {
     public class RatingNameSql
     {

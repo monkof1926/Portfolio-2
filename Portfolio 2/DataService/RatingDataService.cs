@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataLayer.Domain;
+﻿using DataLayer.Domain;
 using DataLayer.IDataService;
-using DataLayer;
+
 
 namespace DataLayer.DataService
 {
@@ -89,14 +84,14 @@ namespace DataLayer.DataService
             db.SaveChanges();
             return true;
         }
-        public User CreateUser(string username, string password, string salt)
+        public User CreateUser(string username, string password)
         {
             var user = new User
             {
                 username = username,
                 password = password,
-                salt = salt
             };
+            return user;
         }
     }
 }

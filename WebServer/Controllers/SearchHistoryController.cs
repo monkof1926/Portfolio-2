@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using DataLayer;
-using DataLayer.DataService;
 using DataLayer.Domain;
 using DataLayer.IDataService;
 using Microsoft.AspNetCore.Mvc;

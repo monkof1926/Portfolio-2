@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-//using Portfolio_2.Models;
-using DataLayer.Domain;
+﻿using DataLayer.Domain;
 
 
 namespace DataLayer.IDataService
@@ -23,6 +17,6 @@ namespace DataLayer.IDataService
         void CreateBookmarksMovie(Bookmarks bookmarksM);
         bool UpdateBookmarksMovie(Bookmarks bookmarksM);
         bool DeleteBookmarksMovie(string bookmarkMovieBID);
-        User CreateUser(string username, string password = null, string salt = null);
+        User CreateUser(string username, string password = null);
     }
 }

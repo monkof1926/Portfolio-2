@@ -1,13 +1,4 @@
-﻿using DataLayer;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Npgsql;
-using DataLayer.Domain;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.SqlFunctions
 {

@@ -1,6 +1,5 @@
 ﻿using DataLayer.Domain;
 using Microsoft.EntityFrameworkCore;
-using DataLayer.SqlFunctions;
 
 namespace DataLayer
 {
@@ -76,7 +75,7 @@ namespace DataLayer
             modelBuilder.Entity<Rating>().Property(x => x.ratingnconst).HasColumnName("nconst");
             modelBuilder.Entity<Rating>().Property(x => x.ratingAvergePerson).HasColumnName("averagerating");
             modelBuilder.Entity<Rating>().Property(x => x.ratingNumPerson).HasColumnName("numvotes");
-            modelBuilder.Entity<Rating>().Property(x => x.ratingUserID).HasColumnName("userid");
+            //modelBuilder.Entity<Rating>().Property(x => x.ratingUserID).HasColumnName("userid"); when add userid to rating 
 
 
 

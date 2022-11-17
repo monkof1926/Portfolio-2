@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using DataLayer.Domain;
+﻿using DataLayer.Domain;
 using DataLayer.IDataService;
 using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +9,7 @@ namespace DataLayer.DataService
     {
         public void CreateRatingHistoryPerson(RatingHistory ratingHistoryP)
         {
+            
             using var db = new NorthwindContext();
             db.name_ratings_hist .Add(ratingHistoryP);
             db.SaveChanges();
@@ -111,14 +106,19 @@ namespace DataLayer.DataService
                 })
                 .ToList();
         }
-        public User CreateUser(string username, string password, string salt)
+        public int GetNumberOfUserRatingHist()
+        {
+            using var db = new NorthwindContext();
+            return db.name_ratings_hist.Count();
+        }
+        public RatingHistory CreateUser(string username, string password)
         {
             var user = new User
             {
                 username = username,
-                password = password,
-                salt = salt
+                password = password
             };
+            return user;
         }
     }
 }

@@ -4,10 +4,6 @@ using DataLayer.IDataService;
 using Microsoft.AspNetCore.Mvc;
 using WebServer.Models;
 
-
-
-
-
 namespace WebServer.Controllers
 {
     [Route("api/user")]

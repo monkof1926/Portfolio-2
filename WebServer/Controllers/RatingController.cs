@@ -3,7 +3,6 @@ using WebServer.Models;
 using DataLayer.IDataService;
 using Microsoft.AspNetCore.Mvc;
 using DataLayer.Domain;
-using DataLayer.DataService;
 
 namespace WebServer.Controllers
 {

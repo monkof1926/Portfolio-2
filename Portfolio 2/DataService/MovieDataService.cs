@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataLayer.Domain;
+﻿using DataLayer.Domain;
 using DataLayer.Models;
 using DataLayer.IDataService;
 using Microsoft.EntityFrameworkCore;
@@ -74,8 +69,6 @@ namespace DataLayer.DataService
                 .Select(x => new MovieSearchModel
                 {
                     movieTitle = x.title,
-                    //startYear = x.Movie.title
-
                 })
                 .ToList();
         }

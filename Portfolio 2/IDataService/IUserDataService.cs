@@ -10,7 +10,7 @@ namespace DataLayer.IDataService
         bool UpdateUser(User user);
         bool DeleteUser(string username);
 
-        User CreateUser(string username, string password = null, string salt = null);
+        User CreateUser(string username, string password = null);
 
 
     }

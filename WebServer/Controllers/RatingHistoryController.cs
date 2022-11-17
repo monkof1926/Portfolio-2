@@ -24,8 +24,8 @@ namespace WebServer.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet(Name = nameof(GetRatingsHistoryPerson))]
-        public IActionResult GetRatingsHistoryPerson(int page = 0, int pageSize = 15)
+        [HttpGet(Name = nameof(GetRatingsHistoryPersons))]
+        public IActionResult GetRatingsHistoryPersons(int page = 0, int pageSize = 15)
         {
             var user = GetUser();
 
@@ -38,8 +38,8 @@ namespace WebServer.Controllers
             return Ok(PagingPerson(page, pageSize, total, rating));
         }
 
-        [HttpGet(Name = nameof(GetRatingsHistoryMovie))]
-        public IActionResult GetRatingsHistoryMovie(int page = 0, int pageSize = 15)
+        [HttpGet(Name = nameof(GetRatingsHistoryMovies))]
+        public IActionResult GetRatingsHistoryMovies(int page = 0, int pageSize = 15)
         {
             var user = GetUser();
 
@@ -52,7 +52,7 @@ namespace WebServer.Controllers
             return Ok(PagingMovie(page, pageSize, total, rating));
         }
 
-        [HttpGet("{ratingHisPersonNID}", Name = nameof(GetRatingsHistoryPerson))]
+        [HttpGet("{ratingHisPersonNID}", Name = nameof(GetRatingHistoryPerson))]
         public IActionResult GetRatingHistoryPerson(string ratingnconst)
         {
             var user = GetUser();
@@ -72,7 +72,7 @@ namespace WebServer.Controllers
 
             return Ok(model);
         }
-        [HttpGet("{ratingHisMovTID}", Name = nameof(GetRatingsHistoryMovie))]
+        [HttpGet("{ratingHisMovTID}", Name = nameof(GetRatingHistoryMovie))]
         public IActionResult GetRatingHistoryMovie(string ratingtonst)
         {
             var user = GetUser();
@@ -225,13 +225,13 @@ namespace WebServer.Controllers
         {
             return _generator.GetUriByName(
             HttpContext,
-                nameof(GetRatingsHistoryPerson), new { page, pageSize });
+                nameof(GetRatingHistoryPerson), new { page, pageSize });
         }
         private string? CreateLinkMovie(int page, int pageSize)
         {
             return _generator.GetUriByName(
             HttpContext,
-                nameof(GetRatingsHistoryMovie), new { page, pageSize });
+                nameof(GetRatingHistoryMovie), new { page, pageSize });
         }
         private User? GetUser()
         {

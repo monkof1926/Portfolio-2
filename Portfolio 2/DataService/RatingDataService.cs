@@ -93,5 +93,10 @@ namespace DataLayer.DataService
             };
             return user;
         }
+
+        public User CreateUser(string username, string password = null, string salt = null)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

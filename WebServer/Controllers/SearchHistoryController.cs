@@ -35,8 +35,8 @@ namespace WebServer.Controllers
             var total = _searchHistoryDataService.GetNumberOfSearchHistories();
             return Ok(Paging(page, pageSize, total, search));
         }
-        [HttpGet("{searchOrder}", Name = nameof(GetSearchHistories))]
-        public IActionResult GetSearchHistories(int searchOrder)
+        [HttpGet("{searchOrder}", Name = nameof(GetSearchHistory))]
+        public IActionResult GetSearchHistory(int searchOrder)
         {
             var user = GetUser();
 

@@ -111,7 +111,7 @@ namespace DataLayer.DataService
             using var db = new NorthwindContext();
             return db.name_ratings_hist.Count();
         }
-        public RatingHistory CreateUser(string username, string password)
+        public User CreateUser(string username, string password)
         {
             var user = new User
             {
@@ -119,6 +119,16 @@ namespace DataLayer.DataService
                 password = password
             };
             return user;
+        }
+
+        public User CreateUser(string username, string password = null, string salt = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        RatingHistory IRatingHistoryDataService.CreateUser(string username, string password)
+        {
+            throw new NotImplementedException();
         }
     }
 }

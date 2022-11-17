@@ -21,6 +21,8 @@ namespace DataLayer
         public DbSet<SearchResult> name_search { get; set; }
         public DbSet<SearchResult> simplesearcher { get; set; }
         public DbSet<SearchResult> structured_string_search { get; set; }
+        public DbSet<NameRating> rate_name { get; set; }
+        public DbSet<TitleRating> rate_title { get; set; }
 
 
 
@@ -115,6 +117,17 @@ namespace DataLayer
             modelBuilder.Entity<SearchResult>().Property(x => x.title).HasColumnName("title");
             modelBuilder.Entity<SearchResult>().Property(x => x.nconst).HasColumnName("n_const");
             modelBuilder.Entity<SearchResult>().Property(x => x.pname).HasColumnName("pname");
+
+            modelBuilder.Entity<NameRating>().HasNoKey();
+            modelBuilder.Entity<NameRating>().Property(x => x.nconst).HasColumnName("rnconst");
+            modelBuilder.Entity<NameRating>().Property(x => x.rating).HasColumnName("rating");
+            modelBuilder.Entity<NameRating>().Property(x => x.userID).HasColumnName("ruserid");
+
+            modelBuilder.Entity<TitleRating>().HasNoKey();
+            modelBuilder.Entity<TitleRating>().Property(x => x.tconst).HasColumnName("rtconst");
+            modelBuilder.Entity<TitleRating>().Property(x => x.rating).HasColumnName("rating");
+            modelBuilder.Entity<TitleRating>().Property(x => x.userID).HasColumnName("ruserid");
+
         }
 
 

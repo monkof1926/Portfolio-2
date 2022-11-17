@@ -1,31 +1,30 @@
-﻿using DataLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.SqlFunctions
 {
     public class RatingNameSql
     {
-        static void UseEntityFrameworkToCallFunction(string connectionString)
+        static void UseEntityFrameworkToCallFunction(
+            //string connectionString,
+            string rnconst,
+            float rating,
+            string ruserid)
         {
             Console.WriteLine("Call function from Entity Framework");
-            using var ctx = new NorthwindContex(connectionString);
+            using var ctx = new NorthwindContext();
 
-            int id = 101;
-            string name = "testing";
-            string description = "testing desc";
+            ctx.Database.ExecuteSqlInterpolated($"select rate_name({rnconst},{rating},{ruserid})");
+            //ctx.Database.ExecuteSqlInterpolated($"select insertcategory({id},{name},{description})");
 
-            ctx.Database.ExecuteSqlInterpolated($"select insertcategory({id},{name},{description})");
+            var ratename = ctx.rate_name.Find(rnconst);
+            //var category = ctx.Categories.Find(id);
 
-            var category = ctx.Categories.Find(id);
+            Console.WriteLine("Newly inserted Rating:");
+            Console.WriteLine($"rnconst={ratename.nconst}, Rating={ratename.rating}, UserID={ratename.userID}");
+            //Console.WriteLine($"Id={category.Id}, Name={category.Name}, Description={category.Description}");
 
-            Console.WriteLine("Newly inserted category:");
-            Console.WriteLine($"Id={category.Id}, Name={category.Name}, Description={category.Description}");
-
-            ctx.Categories.Remove(category);
+            ctx.rate_name.Remove(ratename);
+            //ctx.Categories.Remove(category);
 
             ctx.SaveChanges();
         }

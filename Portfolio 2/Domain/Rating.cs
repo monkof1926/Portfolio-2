@@ -14,7 +14,7 @@ namespace DataLayer.Domain
         public string? ratingtonst { get; set; }
         public float? ratingAvergeTitle { get; set; }
         public float? ratingNumTitle { get; set; }
-        public string? ratingUserID { get; set; }
-
+        //public string? ratingUserID { get; set; }
+        //We didn't prioritize adding the ratingUserID to the SQL database
     }
 }

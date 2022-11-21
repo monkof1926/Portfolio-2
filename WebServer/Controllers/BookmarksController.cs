@@ -21,7 +21,7 @@ namespace WebServer.Controllers
             _generator = generator;
             _mapper = mapper;
         }
-
+        /*
         [HttpGet(Name = nameof(GetBookmarksPers))]
         public IActionResult GetBookmarksPers()
         {
@@ -35,7 +35,7 @@ namespace WebServer.Controllers
             return Ok(bookmark);
         }
 
-        [HttpGet(Name = nameof(GetBookmarks))]
+        [HttpGet(Name = nameof(GetBookmarksMov))]
         public IActionResult GetBookmarksMov()
         {
             var user = GetUser();
@@ -48,8 +48,8 @@ namespace WebServer.Controllers
             return Ok(bookmark);
         }
 
-        [HttpGet("{bookmarkMoviePrimarytitlerl}", Name = nameof(GetBookmarks))]
-        public IActionResult GetBookmarks(string bookmarkPersonBID)
+        [HttpGet("{bookmarkMoviePrimarytitlerl}", Name = nameof(GetBookmarksMov))]
+        public IActionResult GetBookmarksMov(string bookmarkPersonBID)
         {
             var user = GetUser();
 
@@ -57,7 +57,7 @@ namespace WebServer.Controllers
             {
                 return Unauthorized();
             }
-            var book = _bookmarkDataService.GetBookmarksPers(bookmarkPersonBID);
+            var book = _bookmarkDataService.GetBookmarksMov(bookmarkPersonBID);
 
             if (book == null)
             {
@@ -115,13 +115,13 @@ namespace WebServer.Controllers
         {
             return _generator.GetUriByName(
             HttpContext,
-                nameof(GetBookmarks), new { page, pageSize });
+                nameof(GetBookmarksPers), new { page, pageSize });
 
         }
         private User? GetUser()
         {
             return HttpContext.Items["User"] as User;
         }
-
+        */
     }
 }

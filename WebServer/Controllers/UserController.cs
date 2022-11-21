@@ -26,16 +26,16 @@ namespace WebServer.Controllers
         {
             var username = GetUser();
 
-            if (username == null)
+            /*if (username == null)
             {
                 return Unauthorized();
-            }
+            }*/
             var user = _userDataService.GetUsers().Select(UserCreateModel);
             return Ok(user);
         }
 
-        [HttpGet("{username}", Name = nameof(GetUsers))]
-        public IActionResult GetUsers(string username)
+        [HttpGet("{username}", Name = nameof(GetUser))]
+        public IActionResult GetUser(string username)
         {
             var user = _userDataService.GetUsers(username);
 

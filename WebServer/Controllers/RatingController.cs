@@ -20,8 +20,8 @@ namespace WebServer.Controllers
             _generator = generator;
             _mapper = mapper;
         }
-        [HttpGet(Name = nameof(GetRatingsPerson))]
-        public IActionResult GetRatingsPerson()
+        [HttpGet(Name = nameof(GetRatingsPersons))]
+        public IActionResult GetRatingsPersons()
         {
             var user = GetUser();
 
@@ -33,8 +33,8 @@ namespace WebServer.Controllers
             return Ok(rating);
         }
 
-        [HttpGet(Name = nameof(GetRatingsMovie))]
-        public IActionResult GetRatingsMovie()
+        [HttpGet(Name = nameof(GetRatingsMovies))]
+        public IActionResult GetRatingsMovies()
         {
             var user = GetUser();
 
@@ -65,7 +65,7 @@ namespace WebServer.Controllers
 
             return Ok(model);
         }
-        [HttpGet("{ratingtonst}", Name = nameof(GetRatingsMovie))]
+        [HttpGet("{ratingtonst}", Name = nameof(GetRatingMovie))]
         public IActionResult GetRatingMovie(string ratingtonst)
         {
             var user = GetUser();
@@ -159,7 +159,7 @@ namespace WebServer.Controllers
         private RatingModel RatingCreateModelMovie(Rating rating)
         {
             var model = _mapper.Map<RatingModel>(rating);
-            model.Url = _generator.GetUriByName(HttpContext, nameof(GetRatingsMovie), new { rating.ratingtonst });
+            model.Url = _generator.GetUriByName(HttpContext, nameof(GetRatingMovie), new { rating.ratingtonst });
             return model;
         }
 
@@ -173,7 +173,7 @@ namespace WebServer.Controllers
         {
             return _generator.GetUriByName(
             HttpContext,
-                nameof(GetRatingsMovie), new { page, pageSize });
+                nameof(GetRatingMovie), new { page, pageSize });
         }
         private User? GetUser()
         {

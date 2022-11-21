@@ -58,16 +58,21 @@ namespace DataLayer
 
 
             modelBuilder.Entity<Bookmarks>().ToTable("name_bookmarks");
+
+            //modelBuilder.Entity<Bookmarks>().HasKey(x => x.bookmarkPersonBID);
             modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkPersonBID).HasColumnName("nbookid");
             modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkPersonNconst).HasColumnName("nconst");
             modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkPersonName).HasColumnName("primaryname");
 
 
             modelBuilder.Entity<Bookmarks>().ToTable("title_bookmarks");
+            //modelBuilder.Entity<Bookmarks>().HasKey(x => new{x.bookmarkMovieBID, x.userid}); --Eksempel på combosite key
+            //modelBuilder.Entity<Bookmarks>().HasNoKey();
             modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkMovieBID).HasColumnName("tbookid");
             modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkMovieTconst).HasColumnName("tconst");
             modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkMoviePrimarytitle).HasColumnName("primarytitle");
             modelBuilder.Entity<Bookmarks>().Property(x => x.bookmarkUserID).HasColumnName("userid");
+
 
 
 

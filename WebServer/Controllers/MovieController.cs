@@ -31,8 +31,8 @@ namespace WebServer.Controllers
             return Ok(Paging(page, pageSize, total, movie));
         }
 
-        [HttpGet("{title}", Name = nameof(GetMovies))]
-        public IActionResult GetMovies(string movieID)
+        [HttpGet("{title}", Name = nameof(GetMovie))]
+        public IActionResult GetMovie(string movieID)
         {
             var movie = _movieDataService.GetMovies(movieID);
 

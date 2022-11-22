@@ -10,11 +10,11 @@ namespace WebServer.Controllers
     [ApiController]
     public class RatingController : ControllerBase
     {
-        private IRatingDataService _ratingDataService;
+        private IRatingPersonDataService _ratingDataService;
         private readonly LinkGenerator _generator;
         private readonly IMapper _mapper;
 
-        public RatingController(IRatingDataService ratingDataService, LinkGenerator generator, IMapper mapper)
+        public RatingController(IRatingPersonDataService ratingDataService, LinkGenerator generator, IMapper mapper)
         {
             _ratingDataService = ratingDataService;
             _generator = generator;
@@ -94,7 +94,7 @@ namespace WebServer.Controllers
             {
                 return Unauthorized();
             }
-            var rating = _mapper.Map<Rating>(model);
+            var rating = _mapper.Map<RatingPerson>(model);
 
             _ratingDataService.CreateRatingPerson(rating);
 
@@ -109,7 +109,7 @@ namespace WebServer.Controllers
             {
                 return Unauthorized();
             }
-            var rating = _mapper.Map<Rating>(model);
+            var rating = _mapper.Map<RatingPerson>(model);
 
             _ratingDataService.CreateRatingMovie(rating);
 
@@ -150,13 +150,13 @@ namespace WebServer.Controllers
             return Ok();
         }
 
-        private RatingModel RatingCreateModelPerson(Rating rating)
+        private RatingModel RatingCreateModelPerson(RatingPerson rating)
         {
             var model = _mapper.Map<RatingModel>(rating);
             model.Url = _generator.GetUriByName(HttpContext, nameof(GetRatingsPerson), new { rating.ratingnconst });
             return model;
         }
-        private RatingModel RatingCreateModelMovie(Rating rating)
+        private RatingModel RatingCreateModelMovie(RatingPerson rating)
         {
             var model = _mapper.Map<RatingModel>(rating);
             model.Url = _generator.GetUriByName(HttpContext, nameof(GetRatingMovie), new { rating.ratingtonst });

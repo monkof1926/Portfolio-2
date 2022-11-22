@@ -7,8 +7,8 @@ namespace WebServer.Models.Profiles
     {
         public BookmarksProfile()
         {
-            CreateMap<Bookmarks, BookmarksModel>();
-            CreateMap<BookmarksModel, Bookmarks>();
+            CreateMap<BookmarksPerson, BookmarksModel>();
+            CreateMap<BookmarksModel, BookmarksPerson>();
         }
     }
 }

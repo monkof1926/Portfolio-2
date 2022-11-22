@@ -13,9 +13,12 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddSingleton<IUserDataService, UserDataService>();
 builder.Services.AddSingleton<IPersonDataService, PersonDataService>();
 builder.Services.AddSingleton<IMovieDataService, MovieDataService>();
-builder.Services.AddSingleton<IBookmarkDataService, BookmarkDataService>();
-builder.Services.AddSingleton<IRatingDataService, RatingDataService>();
-builder.Services.AddSingleton<IRatingHistoryDataService, RatingHistoryDataService>();
+builder.Services.AddSingleton<IBookmarkPersonDataService, BookmarkPersonDataService>();
+builder.Services.AddSingleton<IBookmarkMovieDataService, BookmarkMovieDataService>();
+builder.Services.AddSingleton<IRatingPersonDataService, RatingPersonDataService>();
+builder.Services.AddSingleton<IRatingMovieDataService, RatingMovieDataService>();
+builder.Services.AddSingleton<IRatingHistoryPersonDataService, RatingHistoryPersonDataService>();
+builder.Services.AddSingleton<IRatingHistoryMovieDataService, RatingHistoryMovieDataService>();
 builder.Services.AddSingleton<ISearchHistoryDataService, SearchHistoryDataService>();
 
 

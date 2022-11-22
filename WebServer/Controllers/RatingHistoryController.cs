@@ -11,13 +11,13 @@ namespace WebServer.Controllers
     [ApiController]
     public class RatingHistoryController : ControllerBase
     {
-        private IRatingHistoryDataService _ratingHistoryDataService;
+        private IRatingHistoryPersonDataService _ratingHistoryDataService;
         private readonly LinkGenerator _generator;
         private readonly IMapper _mapper;
 
         private const int MaxpageSize = 125;
 
-        public RatingHistoryController(IRatingHistoryDataService ratingHistoryDataService, LinkGenerator generator, IMapper mapper)
+        public RatingHistoryController(IRatingHistoryPersonDataService ratingHistoryDataService, LinkGenerator generator, IMapper mapper)
         {
             _ratingHistoryDataService = ratingHistoryDataService;
             _generator = generator;
@@ -101,7 +101,7 @@ namespace WebServer.Controllers
             {
                 return Unauthorized();
             }
-            var ratingHis = _mapper.Map<RatingHistory>(model);
+            var ratingHis = _mapper.Map<RatingHistoryPerson>(model);
 
             _ratingHistoryDataService.CreateRatingHistoryPerson(ratingHis);
 
@@ -116,7 +116,7 @@ namespace WebServer.Controllers
             {
                 return Unauthorized();
             }
-            var rating = _mapper.Map<RatingHistory>(model);
+            var rating = _mapper.Map<RatingHistoryPerson>(model);
 
             _ratingHistoryDataService.CreateRatingHistoryMovie(rating);
 
@@ -208,13 +208,13 @@ namespace WebServer.Controllers
             };
             return result;
         }
-        private RatingHistoryModel RatingHistoryCreateModelPerson(RatingHistory ratingHistory)
+        private RatingHistoryModel RatingHistoryCreateModelPerson(RatingHistoryPerson ratingHistory)
         {
             var model = _mapper.Map<RatingHistoryModel>(ratingHistory);
             model.Url = _generator.GetUriByName(HttpContext, nameof(GetRatingHistoryPerson), new { ratingHistory.ratingHisPersonNID });
             return model;
         }
-        private RatingHistoryModel RatingHistoryCreateModelMovie(RatingHistory ratingHistory)
+        private RatingHistoryModel RatingHistoryCreateModelMovie(RatingHistoryPerson ratingHistory)
         {
             var model = _mapper.Map<RatingHistoryModel>(ratingHistory);
             model.Url = _generator.GetUriByName(HttpContext, nameof(GetRatingHistoryMovie), new { ratingHistory.ratingHisMovTID });

@@ -4,26 +4,22 @@ using DataLayer.IDataService;
 using Microsoft.AspNetCore.Mvc;
 using WebServer.Models;
 
-
 namespace WebServer.Controllers
 {
-    [Route("api/bookmarks")]
-    [ApiController]
-    public class BookmarksController : ControllerBase
+    public class BookmarksMovieController : ControllerBase
     {
-        private IBookmarkDataService _bookmarkDataService;
+        private IBookmarkMovieDataService _bookmarkDataService;
         private readonly LinkGenerator _generator;
         private readonly IMapper _mapper;
 
-        public BookmarksController(IBookmarkDataService bookmarkDataService, LinkGenerator generator, IMapper mapper)
+        public BookmarksMovieController (IBookmarkMovieDataService bookmarkPersonDataService, LinkGenerator generator, IMapper mapper)
         {
-            _bookmarkDataService = bookmarkDataService;
+            _bookmarkDataService = bookmarkPersonDataService;
             _generator = generator;
             _mapper = mapper;
         }
-        /*
-        [HttpGet(Name = nameof(GetBookmarksPers))]
-        public IActionResult GetBookmarksPers()
+        [HttpGet(Name = nameof(GetBookmarksMovies))]
+        public IActionResult GetBookmarksMovies()
         {
             var user = GetUser();
 
@@ -31,12 +27,11 @@ namespace WebServer.Controllers
             {
                 return Unauthorized();
             }
-            var bookmark = _bookmarkDataService.GetBookmarksPers().Select(BookmarksCreateModel);
+            var bookmark = _bookmarkDataService.GetBookmarksMovies().Select(BookmarksCreateModel);
             return Ok(bookmark);
         }
-
-        [HttpGet(Name = nameof(GetBookmarksMov))]
-        public IActionResult GetBookmarksMov()
+        [HttpGet("{bookmarkMoviePrimarytitlerl}", Name = nameof(GetBookmarksMovie))]
+        public IActionResult GetBookmarksMovie(string bookmarkPersonBID)
         {
             var user = GetUser();
 
@@ -44,20 +39,7 @@ namespace WebServer.Controllers
             {
                 return Unauthorized();
             }
-            var bookmark = _bookmarkDataService.GetBookmarksMov().Select(BookmarksCreateModel);
-            return Ok(bookmark);
-        }
-
-        [HttpGet("{bookmarkMoviePrimarytitlerl}", Name = nameof(GetBookmarksMov))]
-        public IActionResult GetBookmarksMov(string bookmarkPersonBID)
-        {
-            var user = GetUser();
-
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-            var book = _bookmarkDataService.GetBookmarksMov(bookmarkPersonBID);
+            var book = _bookmarkDataService.GetBookmarksMovie(bookmarkMovieBID);
 
             if (book == null)
             {
@@ -68,7 +50,6 @@ namespace WebServer.Controllers
 
             return Ok(model);
         }
-
         [HttpPost]
         public IActionResult CreateBookmarks(BookmarksCreateModel model)
         {
@@ -78,14 +59,12 @@ namespace WebServer.Controllers
             {
                 return Unauthorized();
             }
-            var book = _mapper.Map<Bookmarks>(model);
+            var book = _mapper.Map<BookmarksMovie>(model);
 
             _bookmarkDataService.CreateBookmarksMovie(book);
 
             return CreatedAtRoute(null, BookmarksCreateModel);
         }
-
-
         [HttpDelete("{bookmarkMovieBID}")]
         public IActionResult DeleteBookmarkMovie(string bookmarkMovieBID)
         {
@@ -122,6 +101,5 @@ namespace WebServer.Controllers
         {
             return HttpContext.Items["User"] as User;
         }
-        */
     }
 }

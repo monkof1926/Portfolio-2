@@ -7,8 +7,8 @@ namespace WebServer.Models.Profiles
     {
         public RatingHistoryProfile()
         {
-            CreateMap<RatingHistory, RatingHistoryModel>();
-            CreateMap<RatingHistoryModel, RatingHistory>();
+            CreateMap<RatingHistoryPerson, RatingHistoryModel>();
+            CreateMap<RatingHistoryModel, RatingHistoryPerson>();
         }
     }
 }

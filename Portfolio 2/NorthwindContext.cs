@@ -27,23 +27,28 @@ namespace DataLayer
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //optionsBuilder
+              //  .UseNpgsql("host=cit.ruc.dk;db=cit08;uid=cit08;pwd=yrRrh0f2VBVd");
             optionsBuilder
-                .UseNpgsql("host=cit.ruc.dk;db=cit08;uid=cit08;pwd=yrRrh0f2VBVd");
+                .UseNpgsql("host=local;db=imdb;uid=emma;pwd=ILik3Cats!");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("users");
+            modelBuilder.Entity<User>().HasKey("userid");
             modelBuilder.Entity<User>().Property(x => x.username).HasColumnName("userid");
             modelBuilder.Entity<User>().Property(x => x.password).HasColumnName("password");
 
 
             modelBuilder.Entity<Person>().ToTable("name_basics");
+            modelBuilder.Entity<Person>().HasKey("nconst");
             modelBuilder.Entity<Person>().Property(x => x.nameID).HasColumnName("nconst");
             modelBuilder.Entity<Person>().Property(x => x.fullName).HasColumnName("primaryname");
             modelBuilder.Entity<Person>().Property(x => x.birthYear).HasColumnName("birthyear");
             modelBuilder.Entity<Person>().Property(x => x.deathYear).HasColumnName("deathyear");
 
             modelBuilder.Entity<Person>().ToTable("charaters_played");
+            modelBuilder.Entity<Person>().HasNoKey();
             modelBuilder.Entity<Person>().Property(x => x.featuredInMovie).HasColumnName("tconst");
             modelBuilder.Entity<Person>().Property(x => x.featuredInRole).HasColumnName("characters");
             modelBuilder.Entity<Person>().Property(x => x.featuredInProffesion).HasColumnName("category");
@@ -51,6 +56,7 @@ namespace DataLayer
 
 
             modelBuilder.Entity<Movie>().ToTable("title_basics");
+            modelBuilder.Entity<Movie>().HasKey("tconst");
             modelBuilder.Entity<Movie>().Property(x => x.movieID).HasColumnName("tconst");
             modelBuilder.Entity<Movie>().Property(x => x.title).HasColumnName("primarytitle");
             modelBuilder.Entity<Movie>().Property(x => x.startYear).HasColumnName("startyear");

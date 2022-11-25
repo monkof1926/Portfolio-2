@@ -12,9 +12,9 @@ namespace WebServer.Controllers
         private readonly LinkGenerator _generator;
         private readonly IMapper _mapper;
 
-        public BookmarksMovieController (IBookmarkMovieDataService bookmarkPersonDataService, LinkGenerator generator, IMapper mapper)
+        public BookmarksMovieController (IBookmarkMovieDataService bookmarkMovieDataService, LinkGenerator generator, IMapper mapper)
         {
-            _bookmarkDataService = bookmarkPersonDataService;
+            _bookmarkDataService = bookmarkMovieDataService;
             _generator = generator;
             _mapper = mapper;
         }
@@ -31,7 +31,7 @@ namespace WebServer.Controllers
             return Ok(bookmark);
         }
         [HttpGet("{bookmarkMoviePrimarytitlerl}", Name = nameof(GetBookmarksMovie))]
-        public IActionResult GetBookmarksMovie(string bookmarkPersonBID)
+        public IActionResult GetBookmarksMovie(string bookmarkMovieBID)
         {
             var user = GetUser();
 
@@ -51,7 +51,7 @@ namespace WebServer.Controllers
             return Ok(model);
         }
         [HttpPost]
-        public IActionResult CreateBookmarks(BookmarksCreateModel model)
+        public IActionResult CreateBookmarks(BookmarksMovieCreateModel model)
         {
             var user = GetUser();
 
@@ -83,10 +83,10 @@ namespace WebServer.Controllers
             return Ok();
         }
 
-        private BookmarksModel BookmarksCreateModel(Bookmarks bookmarks)
+        private BookmarksMovieModel BookmarksCreateModel(BookmarksMovie bookmarks)
         {
-            var model = _mapper.Map<BookmarksModel>(bookmarks);
-            model.Url = _generator.GetUriByName(HttpContext, nameof(GetBookmarksMov), new { bookmarks.bookmarkMovieBID });
+            var model = _mapper.Map<BookmarksMovieModel>(bookmarks);
+            model.Url = _generator.GetUriByName(HttpContext, nameof(GetBookmarksMovie), new { bookmarks.bookmarkMovieBID });
             return model;
         }
 
@@ -94,7 +94,7 @@ namespace WebServer.Controllers
         {
             return _generator.GetUriByName(
             HttpContext,
-                nameof(GetBookmarksPers), new { page, pageSize });
+                nameof(GetBookmarksMovie), new { page, pageSize });
 
         }
         private User? GetUser()

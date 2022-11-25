@@ -31,11 +31,11 @@ namespace WebServer.Controllers
             {
                 return Unauthorized();
             }
-            var bookmark = _bookmarkDataService.GetBookmarksPersons().Select(BookmarksCreateModel);
+            var bookmark = _bookmarkDataService.GetBookmarksPersons().Select(BookmarksPersonCreateModel);
             return Ok(bookmark);
         }
         [HttpGet("{bookmarkMoviePrimarytitlerl}", Name = nameof(GetBookmarksPersons))]
-        public IActionResult GetBookmarksMov(string bookmarkPersonBID)
+        public IActionResult GetBookmarksPersons(string bookmarkPersonBID)
         {
             var user = GetUser();
 
@@ -50,13 +50,13 @@ namespace WebServer.Controllers
                 return NotFound();
             }
 
-            var model = BookmarksCreateModel(book);
+            var model = BookmarksPersonCreateModel(book);
 
             return Ok(model);
         }
 
         [HttpPost]
-        public IActionResult CreateBookmarks(BookmarksCreateModel model)
+        public IActionResult CreateBookmarks(BookmarksPersonCreateModel model)
         {
             var user = GetUser();
 
@@ -68,7 +68,7 @@ namespace WebServer.Controllers
 
             _bookmarkDataService.CreateBookmarksPerson(book);
 
-            return CreatedAtRoute(null, BookmarksCreateModel);
+            return CreatedAtRoute(null, BookmarksPersonCreateModel);
         }
 
 
@@ -90,10 +90,10 @@ namespace WebServer.Controllers
             return Ok();
         }
 
-        private BookmarksModel BookmarksCreateModel(Bookmarks bookmarks)
+        private BookmarksPersonModel BookmarksPersonCreateModel(BookmarksPerson bookmarks)
         {
-            var model = _mapper.Map<BookmarksModel>(bookmarks);
-            model.Url = _generator.GetUriByName(HttpContext, nameof(GetBookmarksPersons), new { bookmarks.bookmarkMovieBID });
+            var model = _mapper.Map<BookmarksPersonModel>(bookmarks);
+            model.Url = _generator.GetUriByName(HttpContext, nameof(GetBookmarksPersons), new { bookmarks.bookmarkPersonBID });
             return model;
         }
 

@@ -7,7 +7,7 @@ using WebServer.Models;
 
 namespace WebServer.Controllers
 {
-    [Route("api/bookmarks")]
+    [Route("api/bookmarksPerson")]
     [ApiController]
     public class BookmarksPersonController : ControllerBase
     {
@@ -34,8 +34,8 @@ namespace WebServer.Controllers
             var bookmark = _bookmarkDataService.GetBookmarksPersons().Select(BookmarksPersonCreateModel);
             return Ok(bookmark);
         }
-        [HttpGet("{bookmarkMoviePrimarytitlerl}", Name = nameof(GetBookmarksPersons))]
-        public IActionResult GetBookmarksPersons(string bookmarkPersonBID)
+        [HttpGet("{bookmarkMoviePrimarytitler}", Name = nameof(GetBookmarksPerson))]
+        public IActionResult GetBookmarksPerson(string bookmarkPersonBID)
         {
             var user = GetUser();
 
@@ -68,7 +68,7 @@ namespace WebServer.Controllers
 
             _bookmarkDataService.CreateBookmarksPerson(book);
 
-            return CreatedAtRoute(null, BookmarksPersonCreateModel);
+            return CreatedAtRoute(null, CreateBookmarks);
         }
 
 

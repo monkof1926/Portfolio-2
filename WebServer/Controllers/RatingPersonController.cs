@@ -7,7 +7,7 @@ using DataLayer.Models;
 
 namespace WebServer.Controllers
 {
-    [Route("api/rating")]
+    [Route("api/ratingPerson")]
     [ApiController]
     public class RatingPersonController : ControllerBase
     {
@@ -66,7 +66,7 @@ namespace WebServer.Controllers
 
             _ratingDataService.CreateRatingPerson(rating);
 
-            return CreatedAtRoute(null, RatingCreateModelPerson);
+            return CreatedAtRoute(null, CreateRatingPerson);
         }
         [HttpDelete("{ratingnconst}")]
         public IActionResult DeleteRatingPerson(string ratingnconst)

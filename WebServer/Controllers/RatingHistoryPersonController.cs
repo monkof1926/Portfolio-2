@@ -7,7 +7,7 @@ using WebServer.Models;
 
 namespace WebServer.Controllers
 {
-    [Route("api/rating")]
+    [Route("api/ratingHistoryPerson")]
     [ApiController]
     public class RatingHistoryPersonController : ControllerBase
     {

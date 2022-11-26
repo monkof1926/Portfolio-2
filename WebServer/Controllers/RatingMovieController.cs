@@ -7,6 +7,8 @@ using WebServer.Models;
 
 namespace WebServer.Controllers
 {
+    [Route("api/ratingMovie")]
+    [ApiController]
     public class RatingMovieController : ControllerBase
     {
         private IRatingMovieDataService _ratingDataService;
@@ -63,7 +65,7 @@ namespace WebServer.Controllers
 
             _ratingDataService.CreateRatingMovie(rating);
 
-            return CreatedAtRoute(null, RatingCreateModelMovie);
+            return CreatedAtRoute(null, CreateRatingMovie);
         }
         [HttpDelete("{ratingtonst}")]
         public IActionResult DeleteRatingMovie(string ratingtonst)

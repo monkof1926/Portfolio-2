@@ -7,6 +7,8 @@ using WebServer.Models;
 
 namespace WebServer.Controllers
 {
+    [Route("api/ratingHistoryMovie")]
+    [ApiController]
     public class RatingHistoryMovieController : ControllerBase
     {
         private IRatingHistoryMovieDataService _ratingHistoryDataService;

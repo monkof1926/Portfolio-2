@@ -6,6 +6,8 @@ using WebServer.Models;
 
 namespace WebServer.Controllers
 {
+    [Route("api/bookmarksMovie")]
+    [ApiController]
     public class BookmarksMovieController : ControllerBase
     {
         private IBookmarkMovieDataService _bookmarkDataService;

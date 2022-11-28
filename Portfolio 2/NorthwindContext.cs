@@ -1,5 +1,7 @@
 ﻿using DataLayer.Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Security.Cryptography.X509Certificates;
 
 namespace DataLayer
 {
@@ -27,10 +29,10 @@ namespace DataLayer
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder
-              //  .UseNpgsql("host=cit.ruc.dk;db=cit08;uid=cit08;pwd=yrRrh0f2VBVd");
             optionsBuilder
-                .UseNpgsql("host=local;db=imdb;uid=emma;pwd=ILik3Cats!");
+                .UseNpgsql("host=cit.ruc.dk;db=cit08;uid=cit08;pwd=yrRrh0f2VBVd");
+            //optionsBuilder
+            //    .UseNpgsql("host=local;db=imdb;uid=emma;pwd=ILik3Cats!");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,7 +50,7 @@ namespace DataLayer
             modelBuilder.Entity<Person>().Property(x => x.deathYear).HasColumnName("deathyear");
 
             modelBuilder.Entity<Person>().ToTable("charaters_played");
-            modelBuilder.Entity<Person>().HasNoKey();
+            //modelBuilder.Entity<Person>().HasNoKey();
             modelBuilder.Entity<Person>().Property(x => x.featuredInMovie).HasColumnName("tconst");
             modelBuilder.Entity<Person>().Property(x => x.featuredInRole).HasColumnName("characters");
             modelBuilder.Entity<Person>().Property(x => x.featuredInProffesion).HasColumnName("category");
@@ -64,16 +66,16 @@ namespace DataLayer
 
 
             modelBuilder.Entity<BookmarksPerson>().ToTable("name_bookmarks");
-            // modelBuilder.Entity<BookmarksPerson>().HasKey(x => new {x.bookmarkPersonBID,x.UserID});
-            modelBuilder.Entity<BookmarksPerson>().HasNoKey();
+            modelBuilder.Entity<BookmarksPerson>().HasKey(x => x.bookmarkPersonBID);
+            //modelBuilder.Entity<BookmarksPerson>().HasNoKey();
             modelBuilder.Entity<BookmarksPerson>().Property(x => x.bookmarkPersonBID).HasColumnName("nbookid");
             modelBuilder.Entity<BookmarksPerson>().Property(x => x.bookmarkPersonNconst).HasColumnName("nconst");
             modelBuilder.Entity<BookmarksPerson>().Property(x => x.bookmarkPersonName).HasColumnName("primaryname");
 
 
             modelBuilder.Entity<BookmarksMovie>().ToTable("title_bookmarks");
-            // modelBuilder.Entity<Bookmarks>().HasKey(x => new{x.bookmarkMovieBID, x.UserID}); --Eksempel på combosite key
-            modelBuilder.Entity<BookmarksMovie>().HasNoKey();
+            modelBuilder.Entity<BookmarksMovie>().HasKey(x => x.bookmarkMovieBID);
+            //modelBuilder.Entity<Bookmarks>().HasKey(x => new { x.bookmarkMovieBID, x.UserID }); --Eksempel på combosite key
             modelBuilder.Entity<BookmarksMovie>().Property(x => x.bookmarkMovieBID).HasColumnName("tbookid");
             modelBuilder.Entity<BookmarksMovie>().Property(x => x.bookmarkMovieTconst).HasColumnName("tconst");
             modelBuilder.Entity<BookmarksMovie>().Property(x => x.bookmarkMoviePrimarytitle).HasColumnName("primarytitle");
@@ -83,8 +85,7 @@ namespace DataLayer
 
 
             modelBuilder.Entity<RatingPerson>().ToTable("name_ratings");
-            //modelBuilder.Entity<RatingPerson>().HasKey(x => x.ratingnconst);
-            modelBuilder.Entity<RatingPerson>().HasNoKey();
+            modelBuilder.Entity<RatingPerson>().HasKey(x => x.ratingnconst);
             modelBuilder.Entity<RatingPerson>().Property(x => x.ratingnconst).HasColumnName("nconst");
             modelBuilder.Entity<RatingPerson>().Property(x => x.ratingAvergePerson).HasColumnName("averagerating");
             modelBuilder.Entity<RatingPerson>().Property(x => x.ratingNumPerson).HasColumnName("numvotes");
@@ -102,12 +103,11 @@ namespace DataLayer
 
 
             modelBuilder.Entity<RatingMovie>().ToTable("title_ratings");
-            //modelBuilder.Entity<RatingMovie>().HasKey(x => x.ratingtonst);
-            modelBuilder.Entity<RatingMovie>().HasNoKey();
+            modelBuilder.Entity<RatingMovie>().HasKey(x => x.ratingtonst);
             modelBuilder.Entity<RatingMovie>().Property(x => x.ratingtonst).HasColumnName("tconst");
             modelBuilder.Entity<RatingMovie>().Property(x => x.ratingAvergeTitle).HasColumnName("averagerating");
             modelBuilder.Entity<RatingMovie>().Property(x => x.ratingNumTitle).HasColumnName("numvotes");
-            //modelBuilder.Entity<RatingHistoryMovie>().Property(x => x.ratingHisUserID).HasColumnName("userid");
+            //modelBuilder.Entity<RatingMovie>().Property(x => x.ratingHisUserID).HasColumnName("userid");
 
 
 
@@ -128,7 +128,7 @@ namespace DataLayer
             modelBuilder.Entity<SearchHistory>().Property(x => x.searchOrder).HasColumnName("searchid");
             //Add userID here, when added to the database.
 
-
+            //Functions:
             modelBuilder.Entity<SearchResult>().HasNoKey();
             modelBuilder.Entity<SearchResult>().Property(x => x.tconst).HasColumnName("t_const");
             modelBuilder.Entity<SearchResult>().Property(x => x.rank).HasColumnName("rank1");

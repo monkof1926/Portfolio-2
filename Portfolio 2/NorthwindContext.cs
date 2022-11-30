@@ -48,7 +48,6 @@ namespace DataLayer
             modelBuilder.Entity<Person>().Property(x => x.deathYear).HasColumnName("deathyear");
 
             modelBuilder.Entity<Person>().ToTable("charaters_played");
-            modelBuilder.Entity<Person>().HasNoKey();
             modelBuilder.Entity<Person>().Property(x => x.featuredInMovie).HasColumnName("tconst");
             modelBuilder.Entity<Person>().Property(x => x.featuredInRole).HasColumnName("characters");
             modelBuilder.Entity<Person>().Property(x => x.featuredInProffesion).HasColumnName("category");

@@ -34,7 +34,7 @@ namespace WebServer.Controllers
         [HttpGet("{title}", Name = nameof(GetMovie))]
         public IActionResult GetMovie(string movieID)
         {
-            var movie = _movieDataService.GetMovies(movieID);
+            var movie = _movieDataService.GetMovie(movieID);
 
             if (movie == null)
             {

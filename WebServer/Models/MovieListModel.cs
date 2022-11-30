@@ -3,9 +3,9 @@
     public class MovieListModel
     {
         public string? Url { get; set; }
-        public int title { get; set; }
-        public int startYear { get; set; }
-        public int endYear { get; set; }
-        public int rating { get; set; }
+        public string title { get; set; }
+        public string startYear { get; set; }
+        public string endYear { get; set; }
+        public float ratingAvergeTitle { get; set; }
     }
 }

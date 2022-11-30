@@ -28,14 +28,26 @@ namespace DataLayer.DataService
         public IList<Movie> GetMovies(int page, int pageSize)
         {
             using var db = new NorthwindContext();
-            return db.title_basics
-                .Include(x => x.title)
+            var titles = db.title_basics
+                //.Include(x => x.Rating)
                 .Skip(page * pageSize)
                 .Take(pageSize)
                 .OrderBy(x => x.movieID)
                 .ToList();
+
+            var ratingService = new RatingMovieDataService();
+
+            foreach(var t in titles)
+            {
+                t.Rating = ratingService.GetRatingsMovie(t.movieID);
+            }
+
+            return titles;
+
+
+            //return db.title_ratings.ToList();
         }
-        public Movie? GetMovies(string movieID)
+        public Movie? GetMovie(string movieID)
         {
             using var db = new NorthwindContext();
             if (movieID != null)

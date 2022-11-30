@@ -25,10 +25,10 @@ namespace WebServer.Controllers
         {
             var user = GetUser();
 
-            //if (user == null)
-            //{
-            //    return Unauthorized();
-            //}
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var bookmark = _bookmarkDataService.GetBookmarksMovies().Select(BookmarksCreateModel);
             return Ok(bookmark);
         }

@@ -126,7 +126,8 @@ namespace DataLayer
             modelBuilder.Entity<SearchHistory>().HasKey(x => x.searchOrder);
             modelBuilder.Entity<SearchHistory>().Property(x => x.searchWord).HasColumnName("searchword");
             modelBuilder.Entity<SearchHistory>().Property(x => x.searchOrder).HasColumnName("searchid");
-            //Add userID here, when added to the database.
+            //modelBuilder.Entity<SearchHistory>().Property(x => x.userID).HasColumName("userid");
+            
 
             //Functions:
             modelBuilder.Entity<SearchResult>().HasNoKey();

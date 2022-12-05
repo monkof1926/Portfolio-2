@@ -63,6 +63,8 @@ namespace DataLayer
             modelBuilder.Entity<Movie>().Property(x => x.title).HasColumnName("primarytitle");
             modelBuilder.Entity<Movie>().Property(x => x.startYear).HasColumnName("startyear");
             modelBuilder.Entity<Movie>().Property(x => x.endYear).HasColumnName("endyear");
+            modelBuilder.Entity<Movie>().Property(x => x.description).HasColumnName("description");
+            modelBuilder.Entity<Movie>().Property(x => x.image).HasColumnName("image");
 
 
             modelBuilder.Entity<BookmarksPerson>().ToTable("name_bookmarks");

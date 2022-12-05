@@ -7,5 +7,7 @@
         public string startYear{ get; set; }
         public string endYear{ get; set; }
         public float? rating { get; set; }
+        public string description { get; set; }
+        public object image { get; set; }
     }
 }

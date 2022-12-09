@@ -1,8 +1,8 @@
 ﻿namespace WebServer.Models
 {
-    public class RatingNameCreateModel
+    public class RatingTitleSqlCreateModel
     {
-        public string rnconst { get; set; }
+        public string rtconst { get; set; }
         public float rating { get; set; }
         public string ruserid { get; set; }
     }

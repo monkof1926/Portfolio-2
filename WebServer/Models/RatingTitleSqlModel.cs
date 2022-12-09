@@ -1,8 +1,6 @@
-﻿using DataLayer.SqlFunctions;
-
-namespace WebServer.Models
+﻿namespace WebServer.Models
 {
-    public class RatingName 
+    public class RatingTitleSqlModel
     {
         public string Url { get; set; }
         public float rating { get; set; }

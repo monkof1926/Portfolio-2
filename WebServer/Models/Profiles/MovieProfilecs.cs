@@ -8,7 +8,7 @@ namespace WebServer.Models.Profiles
         public MovieProfilecs()
         {
             CreateMap<Movie, MovieListModel>()
-                .ForMember(dst => dst.title, opt => opt.MapFrom(src => src.title));
+               .ForMember(dst => dst.ratingAvergeTitle, opt => opt.MapFrom(src => src.Rating.ratingAvergeTitle));
 
             CreateMap<Movie, MovieModel>();
         }

@@ -31,6 +31,8 @@ namespace DataLayer
         {
             optionsBuilder
                 .UseNpgsql("host=cit.ruc.dk;db=cit08;uid=cit08;pwd=yrRrh0f2VBVd");
+            optionsBuilder.LogTo(Console.WriteLine);
+            optionsBuilder.EnableSensitiveDataLogging();
             //optionsBuilder
             //    .UseNpgsql("host=local;db=imdb;uid=emma;pwd=ILik3Cats!");
         }

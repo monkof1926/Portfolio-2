@@ -11,8 +11,7 @@ namespace DataLayer.Domain
         //public float? rating { get; set; }
         [NotMapped]
         public RatingMovie? Rating { get; set; }
-        public float? rating { get; set; }
-        public string description { get; set; }
-        public object image { get; set; }
+        [NotMapped]
+        public Omdb? omdb { get; set; }
     }
 }

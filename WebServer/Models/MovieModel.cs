@@ -7,7 +7,5 @@
         public int startYear { get; set; }
         public int endYear { get; set; }
         public int rating { get; set; }
-        public string description { get; set; }
-        public object image { get; set; }
     }
 }

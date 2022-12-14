@@ -2,6 +2,7 @@
 using DataLayer.Models;
 using DataLayer.IDataService;
 using Microsoft.EntityFrameworkCore;
+using Portfolio_2.DataService;
 
 namespace DataLayer.DataService
 {
@@ -25,6 +26,7 @@ namespace DataLayer.DataService
 
             return db.SaveChanges() > 0;
         }
+        //This is a hack to make the get movies to work trying to make a better solution
         public IList<Movie> GetMovies(int page, int pageSize)
         {
             using var db = new NorthwindContext();
@@ -36,10 +38,12 @@ namespace DataLayer.DataService
                 .ToList();
 
             var ratingService = new RatingMovieDataService();
+            var movieOMDB = new OmdbDataService();
 
-            foreach(var t in titles)
+            foreach (var t in titles)
             {
                 t.Rating = ratingService.GetRatingsMovie(t.movieID);
+                t.omdb = movieOMDB.GetOmdb(t.movieID);
             }
 
             return titles;

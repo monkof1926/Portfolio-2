@@ -24,6 +24,7 @@ namespace DataLayer
         public DbSet<SearchResult> structured_string_search { get; set; }
         public DbSet<NameRating> rate_name { get; set; }
         public DbSet<TitleRating> rate_title { get; set; }
+        public DbSet<Omdb> Omdb_data { get; set; }
 
 
 
@@ -65,8 +66,6 @@ namespace DataLayer
             modelBuilder.Entity<Movie>().Property(x => x.title).HasColumnName("primarytitle");
             modelBuilder.Entity<Movie>().Property(x => x.startYear).HasColumnName("startyear");
             modelBuilder.Entity<Movie>().Property(x => x.endYear).HasColumnName("endyear");
-            modelBuilder.Entity<Movie>().Property(x => x.description).HasColumnName("description");
-            modelBuilder.Entity<Movie>().Property(x => x.image).HasColumnName("image");
 
 
             modelBuilder.Entity<BookmarksPerson>().ToTable("name_bookmarks");
@@ -131,6 +130,12 @@ namespace DataLayer
             modelBuilder.Entity<SearchHistory>().Property(x => x.searchWord).HasColumnName("searchword");
             modelBuilder.Entity<SearchHistory>().Property(x => x.searchOrder).HasColumnName("searchid");
             //modelBuilder.Entity<SearchHistory>().Property(x => x.userID).HasColumName("userid");
+
+            modelBuilder.Entity<Omdb>().ToTable("omdb_data");
+            modelBuilder.Entity<Omdb>().HasKey(x => x.omdbID);
+            modelBuilder.Entity<Omdb>().Property(x => x.omdbID).HasColumnName("omdb_pkey");
+            modelBuilder.Entity<Omdb>().Property(x => x.poster).HasColumnName("poster");
+            modelBuilder.Entity<Omdb>().Property(x => x.plot).HasColumnName("plot");
             
 
             //Functions:

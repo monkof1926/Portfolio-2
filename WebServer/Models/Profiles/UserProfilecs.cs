@@ -9,7 +9,7 @@ namespace WebServer.Models.Profiles
         public UserProfilecs()
         {
             CreateMap<User, UserModel>();
-            CreateMap<UserModel, DataLayer.Domain.User>();
+            CreateMap<UserModel, User>();
         }
     }
 }

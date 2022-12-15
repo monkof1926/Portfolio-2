@@ -37,14 +37,14 @@ namespace WebServer.Controllers
         [HttpGet("{username}", Name = nameof(GetUser))]
         public IActionResult GetUser(string username)
         {
-            var user = _userDataService.GetUsers(username);
+            var user = _userDataService.GetUser(username);
 
             var usernames = GetUser();
 
-            if (usernames == null)
+            /*if (usernames == null)
             {
                 return Unauthorized();
-            }
+            }*/
 
             if (user == null)
             {

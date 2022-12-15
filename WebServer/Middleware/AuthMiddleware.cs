@@ -25,7 +25,7 @@ namespace WebServer.Middleware
             var username = context.Request.Headers.Authorization.FirstOrDefault();
             if (username != null)
             {
-                var user = _userDataService.GetUsers(username);
+                var user = _userDataService.GetUser(username);
                 if (user != null)
                 {
                 context.Items["User"] = user;

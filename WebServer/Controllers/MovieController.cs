@@ -3,6 +3,7 @@ using DataLayer.IDataService;
 using DataLayer.Domain;
 using Microsoft.AspNetCore.Mvc;
 using WebServer.Models;
+using Microsoft.AspNetCore.Routing;
 
 namespace WebServer.Controllers
 {
@@ -31,7 +32,7 @@ namespace WebServer.Controllers
             return Ok(Paging(page, pageSize, total, movie));
         }
 
-        [HttpGet("{title}", Name = nameof(GetMovie))]
+        [HttpGet("{movieID}", Name = nameof(GetMovie))]
         public IActionResult GetMovie(string movieID)
         {
             var movie = _movieDataService.GetMovie(movieID);
@@ -88,7 +89,7 @@ namespace WebServer.Controllers
         private MovieModel MovieModel(Movie movie)
         {
             var model = _mapper.Map<MovieModel>(movie);
-            model.Url = _generator.GetUriByName(HttpContext, nameof(GetMovies), new { movie.movieID });
+            model.Url = _generator.GetUriByName(HttpContext, nameof(GetMovie), new { movie.movieID });
             return model;
         }
 
@@ -105,6 +106,14 @@ namespace WebServer.Controllers
             return _generator.GetUriByName(
             HttpContext,
                 nameof(GetMovies), new { page, pageSize });
+
+        }
+
+        private string? CreateLink2()
+        {
+            return _generator.GetUriByName(
+            HttpContext,
+                nameof(GetMovie),1);
 
         }
     }

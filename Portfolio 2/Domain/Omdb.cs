@@ -2,7 +2,8 @@
 {
     public class Omdb
     {
-        public string omdbID { get; set; }
+        public int omdbID { get; set; }
+        public string tconst { get; set; }
         public string poster { get; set; }
         public string plot { get; set; }
     }

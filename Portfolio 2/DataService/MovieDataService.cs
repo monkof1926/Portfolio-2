@@ -50,7 +50,7 @@ namespace DataLayer.DataService
 
             //return db.title_ratings.ToList();
         }
-        public Movie? GetMovie(string movieID)
+        public Movie GetMovie(string movieID)
         {
             using var db = new NorthwindContext();
             if (movieID != null)

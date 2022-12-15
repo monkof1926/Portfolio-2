@@ -1,8 +1,5 @@
 ﻿using DataLayer.Domain;
-using DataLayer.Models;
 using DataLayer.IDataService;
-using Microsoft.EntityFrameworkCore;
-using DataLayer.SqlFunctions;
 using DataLayer;
 
 namespace Portfolio_2.DataService

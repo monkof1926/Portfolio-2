@@ -41,10 +41,12 @@ namespace WebServer.Controllers
             {
                 return NotFound();
             }
+            else
+            {
+                var model = MovieListModel(movie);
 
-            var model = MovieModel(movie);
-
-            return Ok(model);
+                return Ok(model);
+            }
         }
 
         [HttpDelete("{movieID}")]
@@ -85,13 +87,6 @@ namespace WebServer.Controllers
             };
             return result;
         }
-                
-        private MovieModel MovieModel(Movie movie)
-        {
-            var model = _mapper.Map<MovieModel>(movie);
-            model.Url = _generator.GetUriByName(HttpContext, nameof(GetMovie), new { movie.movieID });
-            return model;
-        }
 
         private MovieListModel MovieListModel(Movie movie)
         {
@@ -99,21 +94,11 @@ namespace WebServer.Controllers
             model.Url = _generator.GetUriByName(HttpContext, nameof(GetMovies), new { movie.movieID });
             return model;
         }
-
-
         private string? CreateLink(int page, int pageSize)
         {
             return _generator.GetUriByName(
             HttpContext,
                 nameof(GetMovies), new { page, pageSize });
-
-        }
-
-        private string? CreateLink2()
-        {
-            return _generator.GetUriByName(
-            HttpContext,
-                nameof(GetMovie),1);
 
         }
     }

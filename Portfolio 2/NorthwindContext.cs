@@ -132,8 +132,9 @@ namespace DataLayer
             //modelBuilder.Entity<SearchHistory>().Property(x => x.userID).HasColumName("userid");
 
             modelBuilder.Entity<Omdb>().ToTable("omdb_data");
-            modelBuilder.Entity<Omdb>().HasKey(x => x.omdbID);
-            modelBuilder.Entity<Omdb>().Property(x => x.omdbID).HasColumnName("omdb_pkey");
+            modelBuilder.Entity<Omdb>().HasKey(x => x.tconst);
+            modelBuilder.Entity<Omdb>().Property(x => x.tconst).HasColumnName("tconst");
+            modelBuilder.Entity<Omdb>().Property(x => x.omdbID).HasColumnName("omdb_id");
             modelBuilder.Entity<Omdb>().Property(x => x.poster).HasColumnName("poster");
             modelBuilder.Entity<Omdb>().Property(x => x.plot).HasColumnName("plot");
             

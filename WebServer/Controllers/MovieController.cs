@@ -88,7 +88,7 @@ namespace WebServer.Controllers
         private MovieModel MovieModel(Movie movie)
         {
             var model = _mapper.Map<MovieModel>(movie);
-            model.Url = _generator.GetUriByName(HttpContext, nameof(GetMovies), new { movie.movieID });
+            model.Url = _generator.GetUriByName(HttpContext, nameof(GetMovie), new { movie.movieID });
             return model;
         }
 

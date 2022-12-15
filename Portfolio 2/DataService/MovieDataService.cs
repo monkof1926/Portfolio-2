@@ -31,7 +31,6 @@ namespace DataLayer.DataService
         {
             using var db = new NorthwindContext();
             var titles = db.title_basics
-                //.Include(x => x.Rating)
                 .Skip(page * pageSize)
                 .Take(pageSize)
                 .OrderBy(x => x.movieID)

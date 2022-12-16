@@ -73,18 +73,6 @@ namespace DataLayer.SqlFunctions
                 {
                     return ctx.QuerySearchResults.FromSqlInterpolated($"select * from exact_match_search({searchwords[0]},{searchwords[1]},{searchwords[2]},{searchwords[3]})").ToList();
                 }
-                else if (type == 5 && searchwords.Length == 1)
-                {
-                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from exact_match_search({searchwords[0]},' ',' ',' ')").ToList();
-                }
-                else if (type == 5 && searchwords.Length == 2)
-                {
-                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from exact_match_search({searchwords[0]},{searchwords[1]},' ',' ')").ToList();
-                }
-                else if (type == 5 && searchwords.Length == 3)
-                {
-                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from exact_match_search({searchwords[0]},{searchwords[1]},{searchwords[2]},' ')").ToList();
-                }
             }
 
             return new List<QuerySearchResult>();

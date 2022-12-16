@@ -1,6 +1,5 @@
-﻿using DataLayer.Models;
-using DataLayer.Domain;
-
+﻿using DataLayer.Domain;
+using DataLayer.Models;
 
 namespace DataLayer.IDataService
 {

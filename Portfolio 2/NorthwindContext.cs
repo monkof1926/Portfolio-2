@@ -1,11 +1,12 @@
 ﻿using DataLayer.Domain;
+using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Security.Cryptography.X509Certificates;
 
 namespace DataLayer
 {
-    public class NorthwindContext : DbContext   
+    public class NorthwindContext : DbContext
     {
         public DbSet<User> users { get; set; }
         public DbSet<Person> name_basics { get; set; }
@@ -25,6 +26,8 @@ namespace DataLayer
         public DbSet<NameRating> rate_name { get; set; }
         public DbSet<TitleRating> rate_title { get; set; }
         public DbSet<Omdb> Omdb_data { get; set; }
+
+        public DbSet<QuerySearchResult> QuerySearchResults { get; set; }
 
 
 
@@ -121,7 +124,7 @@ namespace DataLayer
             modelBuilder.Entity<RatingHistoryMovie>().Property(x => x.ratingHisMovTID).HasColumnName("trateid");
             modelBuilder.Entity<RatingHistoryMovie>().Property(x => x.ratingHisMovTconst).HasColumnName("tconst");
             modelBuilder.Entity<RatingHistoryMovie>().Property(x => x.ratingHisMovRating).HasColumnName("rating");
-            
+
 
 
 
@@ -137,7 +140,7 @@ namespace DataLayer
             modelBuilder.Entity<Omdb>().Property(x => x.omdbID).HasColumnName("omdb_id");
             modelBuilder.Entity<Omdb>().Property(x => x.poster).HasColumnName("poster");
             modelBuilder.Entity<Omdb>().Property(x => x.plot).HasColumnName("plot");
-            
+
 
             //Functions:
             modelBuilder.Entity<SearchResult>().HasNoKey();
@@ -157,9 +160,11 @@ namespace DataLayer
             modelBuilder.Entity<TitleRating>().Property(x => x.rating).HasColumnName("rating");
             modelBuilder.Entity<TitleRating>().Property(x => x.userID).HasColumnName("ruserid");
 
+            modelBuilder.Entity<QuerySearchResult>().HasNoKey();
+
         }
 
 
     }
-   
+
 }

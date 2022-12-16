@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DataLayer.Domain;
+
 namespace WebServer.Models.Profiles
 {
     public class BookmarksMovieProfile : Profile

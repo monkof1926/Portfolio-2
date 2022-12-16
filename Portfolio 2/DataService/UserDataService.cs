@@ -1,9 +1,9 @@
-﻿using DataLayer.Domain;
+﻿using DataLayer;
+using DataLayer.Domain;
 using DataLayer.IDataService;
 
 
-
-namespace DataLayer.DataService 
+namespace DataLayer.DataService
 {
     public class UserDataService : IUserDataService
     {

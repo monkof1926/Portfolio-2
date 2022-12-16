@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataLayer.Domain;
-using DataLayer.IDataService;
 using DataLayer;
 using System.Data.Common;
+using DataLayer.Domain;
+using DataLayer.IDataService;
+
 
 namespace DataLayer.DataService
 {
     public class BookmarkPersonDataService : IBookmarkPersonDataService
-    { 
+    {
         public void CreateBookmarksPerson(BookmarksPerson bookmarksP)
         {
             using var db = new NorthwindContext();
@@ -25,8 +26,9 @@ namespace DataLayer.DataService
             if (bookmarkP != null)
             {
                 db.name_bookmarks.Remove(bookmarkP);
-            } else { return false; }
-            
+            }
+            else { return false; }
+
             return db.SaveChanges() > 0;
         }
         public IList<BookmarksPerson> GetBookmarksPersons()
@@ -50,7 +52,7 @@ namespace DataLayer.DataService
             db.SaveChanges();
             return true;
         }
-       
+
         public User CreateUser(string username, string password)
         {
             var user = new User

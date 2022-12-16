@@ -1,7 +1,9 @@
-﻿using DataLayer.Domain;
+﻿using DataLayer;
+using DataLayer.Domain;
 using DataLayer.IDataService;
 using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace DataLayer.DataService
 {
@@ -51,17 +53,17 @@ namespace DataLayer.DataService
             return true;
         }
         public IList<RatingHistoryMovieSearchModel> GetRatingHistoryMovieByUser(string search)
-            {
-                using var db = new NorthwindContext();
-                return db.title_ratings_hist
-                    .Include(x => x.ratingHisMovTID)
-                    .Where(x => x.ratingHisMovTID == search)
-                    .Select(x => new RatingHistoryMovieSearchModel
-                    {
-                        ratingHistoryMovieUserID = x.ratingHisMovTID
-                    })
-                    .ToList();
-            }
+        {
+            using var db = new NorthwindContext();
+            return db.title_ratings_hist
+                .Include(x => x.ratingHisMovTID)
+                .Where(x => x.ratingHisMovTID == search)
+                .Select(x => new RatingHistoryMovieSearchModel
+                {
+                    ratingHistoryMovieUserID = x.ratingHisMovTID
+                })
+                .ToList();
+        }
         public int GetNumberOfUserRatingHist()
         {
             using var db = new NorthwindContext();

@@ -1,10 +1,11 @@
 ﻿using DataLayer.Domain;
+using DataLayer.Models;
 using DataLayer.SqlFunctions;
 
-namespace Portfolio_2.IDataService
+namespace DataLayer.IDataService
 {
     public interface ISearchFuncDataService
     {
-        SearchFunc GetSearchFunc(string connectionstring, int type, string searchString);
+        IList<QuerySearchResult> GetSearchFunc(int type, string searchString);
     }
 }

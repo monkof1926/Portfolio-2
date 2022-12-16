@@ -1,7 +1,9 @@
-﻿using DataLayer.Domain;
+﻿using DataLayer;
+using DataLayer.Domain;
 using DataLayer.IDataService;
 using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace DataLayer.DataService
 {
@@ -9,9 +11,9 @@ namespace DataLayer.DataService
     {
         public void CreateRatingHistoryPerson(RatingHistoryPerson ratingHistoryP)
         {
-            
+
             using var db = new NorthwindContext();
-            db.name_ratings_hist .Add(ratingHistoryP);
+            db.name_ratings_hist.Add(ratingHistoryP);
             db.SaveChanges();
         }
         public bool DeleteRatingHistoryPerson(string ratingHisPersonNID)
@@ -36,13 +38,13 @@ namespace DataLayer.DataService
                 .OrderBy(x => x.ratingHisPersonNID)
                 .ToList();
         }
-      
+
         public RatingHistoryPerson? GetRatingHistoryPerson(string ratingHisPersonNID)
         {
             using var db = new NorthwindContext();
             return db.name_ratings_hist.Find(ratingHisPersonNID);
         }
-       
+
         public bool UpdateRatingHistoryPerson(RatingHistoryPerson ratingHistory)
         {
             using var db = new NorthwindContext();
@@ -53,8 +55,8 @@ namespace DataLayer.DataService
             db.SaveChanges();
             return true;
         }
-        
-       
+
+
         public IList<RatingHistoryPersonSearchModel> GetRatingHistoryPersonByUser(string search)
         {
             using var db = new NorthwindContext();
@@ -72,14 +74,14 @@ namespace DataLayer.DataService
             using var db = new NorthwindContext();
             return db.name_ratings_hist.Count();
         }
-       /* public User CreateUser(string username, string password)
-        {
-            var user = new User
-            {
-                username = username,
-                password = password
-            };
-            return user;
-        }*/
+        /* public User CreateUser(string username, string password)
+         {
+             var user = new User
+             {
+                 username = username,
+                 password = password
+             };
+             return user;
+         }*/
     }
 }

@@ -1,8 +1,8 @@
 using DataLayer.Domain;
+using WebServer.Middleware;
 using DataLayer.DataService;
 using DataLayer.IDataService;
-using WebServer.Middleware;
-
+using DataLayer.SqlFunctions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +20,8 @@ builder.Services.AddSingleton<IRatingMovieDataService, RatingMovieDataService>()
 builder.Services.AddSingleton<IRatingHistoryPersonDataService, RatingHistoryPersonDataService>();
 builder.Services.AddSingleton<IRatingHistoryMovieDataService, RatingHistoryMovieDataService>();
 builder.Services.AddSingleton<ISearchHistoryDataService, SearchHistoryDataService>();
+builder.Services.AddSingleton<ISearchFuncDataService, SearchFunc>();
+
 
 
 var app = builder.Build();

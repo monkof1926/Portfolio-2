@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataLayer;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace DataLayer.SqlFunctions
 {

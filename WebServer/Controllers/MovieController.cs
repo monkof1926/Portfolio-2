@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using DataLayer.IDataService;
-using DataLayer.Domain;
 using Microsoft.AspNetCore.Mvc;
 using WebServer.Models;
 using Microsoft.AspNetCore.Routing;
+using DataLayer.Domain;
+using DataLayer.IDataService;
 
 namespace WebServer.Controllers
 {

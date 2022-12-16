@@ -1,4 +1,5 @@
-﻿using DataLayer.Domain;
+﻿using DataLayer;
+using DataLayer.Domain;
 using DataLayer.IDataService;
 
 
@@ -33,9 +34,9 @@ namespace DataLayer.DataService
         {
             using var db = new NorthwindContext();
             return db.name_ratings.Find(ratingAvergePerson);
-            
+
         }
-        public bool UpdateRatingPerson(RatingPerson rating) 
+        public bool UpdateRatingPerson(RatingPerson rating)
         {
             using var db = new NorthwindContext();
             var dbRatingPerson = db.name_ratings.Find(rating.ratingnconst);
@@ -45,14 +46,14 @@ namespace DataLayer.DataService
             db.SaveChanges();
             return true;
         }
-       /* public User CreateUser(string username, string password)
-        {
-            var user = new User
-            {
-                username = username,
-                password = password,
-            };
-            return user;
-        }*/
+        /* public User CreateUser(string username, string password)
+         {
+             var user = new User
+             {
+                 username = username,
+                 password = password,
+             };
+             return user;
+         }*/
     }
 }

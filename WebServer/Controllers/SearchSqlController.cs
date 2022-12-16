@@ -4,11 +4,10 @@ using DataLayer.Domain;
 using DataLayer.IDataService;
 using DataLayer.SqlFunctions;
 using Microsoft.AspNetCore.Mvc;
-using Portfolio_2.IDataService;
 using WebServer.Models;
 
-namespace WebServer.Controllers 
-{ 
+namespace WebServer.Controllers
+{
 
     [Route("api/search")]
     [ApiController]
@@ -25,14 +24,20 @@ namespace WebServer.Controllers
             _generator = generator;
             _mapper = mapper;
         }
-        /*
+        
         [HttpGet (Name = nameof(GetSearchFunc))]
 
-        public IActionResult GetSearchFunc()
+        public IActionResult GetSearchFunc(string? query = null, int type = 1)
         {
-            var searchFunc = _searchfunc.GetSearchFunc();
-        }
+            if(query == null)
+            {
+                return NotFound();
+            }
+            var results = _searchfunc.GetSearchFunc(type, query);
 
+            return Ok(results);
+        }
+        /*
         private SearchSqlModel SearchSqlListModel(SearchFunc searchFunc)
         {
             var model = _mapper.Map<UserModel>(searchFunc);

@@ -1,7 +1,9 @@
-﻿using DataLayer.Domain;
+﻿using DataLayer;
+using DataLayer.Domain;
 using DataLayer.IDataService;
 using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace DataLayer.DataService
 {

@@ -2,7 +2,7 @@
 {
     public class RatingHistoryPerson
     {
-      
+
         public string ratingHisPersonNID { get; set; }
         public float ratingHisPersonRating { get; set; }
         public string ratingHisPersonNconst { get; set; }

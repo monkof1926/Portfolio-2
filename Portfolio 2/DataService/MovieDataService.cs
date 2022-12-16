@@ -1,8 +1,9 @@
-﻿using DataLayer.Domain;
-using DataLayer.Models;
+﻿using DataLayer;
+using DataLayer.Domain;
 using DataLayer.IDataService;
+using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
-using Portfolio_2.DataService;
+
 
 namespace DataLayer.DataService
 {
@@ -55,7 +56,7 @@ namespace DataLayer.DataService
             using var db = new NorthwindContext();
             if (movieID != null)
             {
-                return db.title_basics.Find(movieID);
+                return db.title_basics.FirstOrDefault(x => x.movieID == movieID);
             }
             return null;
         }

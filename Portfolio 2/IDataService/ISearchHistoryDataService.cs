@@ -1,7 +1,6 @@
 ﻿using DataLayer.Domain;
 using DataLayer.Models;
 
-
 namespace DataLayer.IDataService
 {
     public interface ISearchHistoryDataService

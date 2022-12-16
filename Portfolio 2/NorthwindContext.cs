@@ -162,6 +162,7 @@ namespace DataLayer
 
             modelBuilder.Entity<QuerySearchResult>().HasNoKey();
 
+
         }
 
 

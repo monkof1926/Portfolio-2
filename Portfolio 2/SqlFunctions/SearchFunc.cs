@@ -14,51 +14,77 @@ namespace DataLayer.SqlFunctions
             using var ctx = new NorthwindContext();
             string[] searchwords = searchString.Split(" ");
 
+            //This is a hack we will try to improve
+
             if (searchwords.Length > 0)
             {
+                // Type 1 is simple search
                 if (type == 1)
                 {
                     return ctx.QuerySearchResults.FromSqlInterpolated($"select * from simplesearcher({searchwords[0]})").ToList();
                 }
+                // Type 2 is specified person search called namesearch in database
                 if (type == 2 && searchwords.Length > 1)
                 {
                     return ctx.QuerySearchResults.FromSqlInterpolated($"select * from namesearch({searchwords[0]},{searchwords[1]})").ToList();
-                }
-                /*switch (type)
+                } else if (type == 2 && searchwords.Length > 0)
                 {
-                    case 1:
-                        return ctx.SearchResults.FromSqlInterpolated($"select * from simplesearcher({searchwords[0]})").ToList();
-                    case 2:
+                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from namesearch({searchwords[0]},' ')").ToList();
+                }
+                // Type 3 is Best match search 
+                if (type == 3 && searchwords.Length > 3)
+                {
+                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from best_match_search({searchwords[0]},{searchwords[1]},{searchwords[2]},{searchwords[3]})").ToList();
+                    
+                } else if (type == 3 && searchwords.Length == 1)
+                {
+                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from best_match_search({searchwords[0]},' ',' ',' ')").ToList();
 
-                        return ctx.SearchResults.FromSqlInterpolated($"select * from namesearch({searchwords[0]},{searchwords[1]})").ToList();
-                        
-                           case 3:
-                               var result3 = ctx.best_match_search.FromSqlInterpolated($"select * from best_match_search({searchwords[0]},{searchwords[1]},{searchwords[2]},{searchwords[3]})");
-                               foreach (var searchresult in result3)
-                               {
-                                   Console.WriteLine($"{searchresult.rank}, {searchresult.tconst}, {searchresult.title}");
-                               }
-                               break;
-                           case 4:
-                               var result4 = ctx.structured_string_search.FromSqlInterpolated($"select * from structured_string_search({searchwords[0]},{searchwords[1]},{searchwords[2]},{searchwords[3]})");
-                               foreach (var searchresult in result4)
-                               {
-                                   Console.WriteLine($"{searchresult.tconst}, {searchresult.title}");
-                               }
-                               break;
-                           case 5:
-                               var result5 = ctx.structured_string_search.FromSqlInterpolated($"select * from exact_match_search({searchwords[0]},{searchwords[1]},{searchwords[2]},{searchwords[3]})");
-                               foreach (var searchresult in result5)
-                               {
-                                   Console.WriteLine($"{searchresult.tconst}, {searchresult.title}, {searchresult.rank}");
-                               }
-                               break;
-                           default:
-                               Console.W
-                           riteLine("Something went wrong try again");
-                               break;
-                        
-                }*/
+                }
+                else if (type == 3 && searchwords.Length == 2)
+                {
+                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from best_match_search({searchwords[0]},{searchwords[1]},' ',' ')").ToList();
+
+                }
+                else if (type == 3 && searchwords.Length == 3)
+                {
+                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from best_match_search({searchwords[0]},{searchwords[1]},{searchwords[2]},' ')").ToList();
+
+                }
+                //Type 4 is structured string search
+                else if (type == 4 && searchwords.Length > 3)
+                {
+                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from structured_string_search({searchwords[0]},{searchwords[1]},{searchwords[2]},{searchwords[3]})"). ToList();
+                }
+                else if (type == 4 && searchwords.Length == 1)
+                {
+                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from structured_string_search({searchwords[0]},' ',' ',' ')").ToList();
+                }
+                else if (type == 4 && searchwords.Length == 2)
+                {
+                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from structured_string_search({searchwords[0]},{searchwords[1]},' ',' ')").ToList();
+                }
+                else if (type == 4 && searchwords.Length == 3)
+                {
+                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from structured_string_search({searchwords[0]},{searchwords[1]},{searchwords[2]},' ')").ToList();
+                }
+                //type 5 is exact match search
+                else if (type == 5 && searchwords.Length > 3)
+                {
+                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from exact_match_search({searchwords[0]},{searchwords[1]},{searchwords[2]},{searchwords[3]})").ToList();
+                }
+                else if (type == 5 && searchwords.Length == 1)
+                {
+                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from exact_match_search({searchwords[0]},' ',' ',' ')").ToList();
+                }
+                else if (type == 5 && searchwords.Length == 2)
+                {
+                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from exact_match_search({searchwords[0]},{searchwords[1]},' ',' ')").ToList();
+                }
+                else if (type == 5 && searchwords.Length == 3)
+                {
+                    return ctx.QuerySearchResults.FromSqlInterpolated($"select * from exact_match_search({searchwords[0]},{searchwords[1]},{searchwords[2]},' ')").ToList();
+                }
             }
 
             return new List<QuerySearchResult>();

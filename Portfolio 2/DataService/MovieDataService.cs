@@ -56,7 +56,16 @@ namespace DataLayer.DataService
             using var db = new NorthwindContext();
             if (movieID != null)
             {
-                return db.title_basics.FirstOrDefault(x => x.movieID == movieID);
+                var movie = db.title_basics.FirstOrDefault(x => x.movieID == movieID);
+                var ratingService = new RatingMovieDataService();
+
+                movie.Rating = ratingService.GetRatingsMovie(movieID);
+
+                var movieOMDB = new OmdbDataService();
+
+                movie.omdb = movieOMDB.GetOmdb(movieID);
+
+                return movie;
             }
             return null;
         }

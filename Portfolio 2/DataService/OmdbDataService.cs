@@ -6,7 +6,7 @@ namespace DataLayer.DataService
 {
     public class OmdbDataService : IOmdbDataService
     {
-        public Omdb GetOmdb(string omdbID)
+        public Omdb? GetOmdb(string omdbID)
         {
             using var db = new NorthwindContext();
             if (omdbID != null)

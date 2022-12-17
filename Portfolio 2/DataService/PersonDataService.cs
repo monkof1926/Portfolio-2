@@ -5,6 +5,7 @@ using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
 
 
+
 namespace DataLayer.DataService
 {
     public class PersonDataService : IPersonDataService
@@ -31,12 +32,22 @@ namespace DataLayer.DataService
 
         {
             using var db = new NorthwindContext();
-            return db.name_basics
-                //.Include(x => x.fullName)
+            var charaters = db.name_basics
                 .Skip(page * pageSize)
                 .Take(pageSize)
                 .OrderBy(x => x.nameID)
                 .ToList();
+
+            var charatersPlayedinMovie = new CharactersPlayedDataService();
+
+            foreach (var c in charaters)
+            {
+                c.charaters_played = charatersPlayedinMovie.GetCharacters(c.nameID);
+            }
+
+            return charaters;
+
+
         }
         public Person? GetPersons(string nameID)
         {

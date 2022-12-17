@@ -31,7 +31,7 @@ namespace WebServer.Controllers
             return Ok(Paging(page, pageSize, total, person));
         }
 
-        [HttpGet("{fullname}", Name = nameof(GetPerson))]
+        [HttpGet("{nameID}", Name = nameof(GetPerson))]
         public IActionResult GetPerson(string nameID)
         {
             var person = _personDataService.GetPersons(nameID);

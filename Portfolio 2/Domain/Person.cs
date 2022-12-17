@@ -1,4 +1,6 @@
-﻿namespace DataLayer.Domain
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DataLayer.Domain
 {
     public class Person
     {
@@ -6,10 +8,9 @@
         public string? fullName { get; set; }
         public string? birthYear { get; set; }
         public string? deathYear { get; set; }
-        public float? rating { get; set; }
-        public string? featuredInMovie { get; set; }
-        public string? featuredInRole { get; set; }
-        public string? featuredInProffesion { get; set; }
 
+        [NotMapped]
+        public CharatersPlayed? charaters_played { get; set; }
+       
     }
 }

@@ -7,7 +7,7 @@ namespace DataLayer.IDataService
     {
 
         IList<Person> GetPersons(int page, int pageSize);
-        Person? GetPersons(string nameID);
+        Person? GetPersons(string? nameID);
         void CreatePerson(Person person);
         bool UpdatePerson(Person person);
         bool DeletePerson(string personID);

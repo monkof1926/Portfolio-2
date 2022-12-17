@@ -28,11 +28,10 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetSearchFuncBest))]
         public IActionResult GetSearchFuncBest( int? type = 3, string? query = null /*,int page = 0, int pageSize = 15*/)
         {
-          /*  
+          /*
             var model = _searchfunc.GetSearchFuncBest(type, query, page, pageSize).Select(BestMatchSearchFuncListModel) ;
             var total = _searchfunc.GetNumberOfSearch();
-          */
-
+            */
             if (query == null)
             {
                 return NotFound();
@@ -43,7 +42,7 @@ namespace WebServer.Controllers
             //return Ok(Paging(page,pageSize,model,total));
             return Ok(results);
         }
-      /*  
+      /*
         private object Paging<T>(int page, int pageSize, int total, IEnumerable<T> items)
         {
             pageSize = pageSize > MaxpageSize ? MaxpageSize : pageSize;

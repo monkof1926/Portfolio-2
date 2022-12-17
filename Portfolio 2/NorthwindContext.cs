@@ -26,7 +26,7 @@ namespace DataLayer
         public DbSet<NameRating> rate_name { get; set; }
         public DbSet<TitleRating> rate_title { get; set; }
         public DbSet<Omdb> Omdb_data { get; set; }
-        public DbSet<CharatersPlayed> characters_played { get; set; }
+        public DbSet<CharatersPlayed> Characters_played { get; set; }
         public DbSet<QuerySearchResult> QuerySearchResults { get; set; }
         public DbSet<SimpleQuerySearchResult> simpleQuerySearchResults { get; set; }
         public DbSet<RankQuerySearchResult> rankQuerySearchResults { get; set; }

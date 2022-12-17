@@ -49,7 +49,7 @@ namespace DataLayer.DataService
 
 
         }
-        public Person? GetPersons(string nameID)
+        public Person? GetPersons(string? nameID)
         {
             using var db = new NorthwindContext();
             if (nameID != null)

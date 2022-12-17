@@ -1,24 +1,21 @@
 ﻿using DataLayer;
 using DataLayer.IDataService;
 using DataLayer.Domain;
-using System.Runtime.CompilerServices;
 
 namespace DataLayer.DataService
 {
-    public class CharactersPlayedDataService : ICharactersPlayedDataService
+    public class CharactersPlayedDataService : ICharactersPlayedDataService 
     {
-        public CharatersPlayed? GetCharacters(string? nconst)    
+        public CharatersPlayed? GetCharacters(string? nconst)
         {
             using var db = new NorthwindContext();
             if (nconst != null)
             {
-                return db.characters_played.Find(nconst);
-               
+                return db.Characters_played.Find(nconst);
             }
-            else
-            {
-                return null;
-            }
+
+            else return null;
+
         }
     }
 }

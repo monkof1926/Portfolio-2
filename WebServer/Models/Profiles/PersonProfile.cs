@@ -11,7 +11,7 @@ namespace WebServer.Models.Profiles
                 .ForMember(dst => dst.charactersplayed, opt => opt.MapFrom(src => src.charaters_played.charactersplayed))
                 .ForMember(dst => dst.category, opt => opt.MapFrom(src => src.charaters_played.category));
 
-            CreateMap<Person, PersonModel>();
+            CreateMap<PersonListModel, Person>();
         }
     }
 }

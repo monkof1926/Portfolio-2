@@ -26,12 +26,8 @@ namespace WebServer.Controllers
         }
         
         [HttpGet (Name = nameof(GetSearchFunc))]
-        public IActionResult GetSearchFunc(string? query = null, int type = 1)
+        public IActionResult GetSearchFunc(string? query = null, int type = 2)
         {
-            if (type == 1|| type == 5 || type == 3 || type == 4)
-            {
-                return NotFound();
-            }
             if (query == null)
             {
                 return NotFound();

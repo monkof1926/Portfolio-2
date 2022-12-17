@@ -9,7 +9,9 @@ namespace DataLayer.IDataService
 {
     public interface IBestMatchSearchFuncDatService
     {
-        IList<RankQuerySearchResult> GetSearchFuncBest(int type, string searchString);
+        IList<RankQuerySearchResult> GetSearchFuncBest(int? type, string? searchString /*, int page, int pageSize*/);
+
+       // int GetNumberOfSearch();
     }
 }
     

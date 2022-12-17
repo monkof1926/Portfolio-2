@@ -2,7 +2,6 @@
 using DataLayer.IDataService;
 using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.CompilerServices;
 
 namespace DataLayer.SqlFunctions
 {

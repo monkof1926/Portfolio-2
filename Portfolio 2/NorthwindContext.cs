@@ -30,7 +30,7 @@ namespace DataLayer
         public DbSet<QuerySearchResult> QuerySearchResults { get; set; }
         public DbSet<SimpleQuerySearchResult> simpleQuerySearchResults { get; set; }
         public DbSet<RankQuerySearchResult> rankQuerySearchResults { get; set; }
-        public DbSet<BestMatchQuerySearchResult> bestMatchQuerySearchResults { get; set; }
+       
 
 
 
@@ -166,8 +166,6 @@ namespace DataLayer
             modelBuilder.Entity<SimpleQuerySearchResult>().HasNoKey();
 
             modelBuilder.Entity<RankQuerySearchResult>().HasNoKey();
-
-            modelBuilder.Entity<BestMatchQuerySearchResult>().HasNoKey();
 
         }
 

@@ -24,7 +24,7 @@ namespace WebServer.Controllers
             _mapper = mapper;
         }
         [HttpGet(Name = nameof(GetSearchFuncStructured))]
-        public IActionResult GetSearchFuncStructured(string? query = null, int type = 1)
+        public IActionResult GetSearchFuncStructured(string? query = null, int type = 4)
         {
             if (type == 2 || type == 5 || type == 3)
             {

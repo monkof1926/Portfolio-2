@@ -26,6 +26,7 @@ namespace DataLayer
         public DbSet<NameRating> rate_name { get; set; }
         public DbSet<TitleRating> rate_title { get; set; }
         public DbSet<Omdb> Omdb_data { get; set; }
+        public DbSet<CharatersPlayed> charatersPlayeds { get; set; }
 
         public DbSet<QuerySearchResult> QuerySearchResults { get; set; }
         public DbSet<SimpleQuerySearchResult> simpleQuerySearchResults { get; set; }
@@ -58,11 +59,12 @@ namespace DataLayer
             modelBuilder.Entity<Person>().Property(x => x.birthYear).HasColumnName("birthyear");
             modelBuilder.Entity<Person>().Property(x => x.deathYear).HasColumnName("deathyear");
 
-            modelBuilder.Entity<Person>().ToTable("charaters_played");
-            //modelBuilder.Entity<Person>().HasNoKey();
-            modelBuilder.Entity<Person>().Property(x => x.featuredInMovie).HasColumnName("tconst");
-            modelBuilder.Entity<Person>().Property(x => x.featuredInRole).HasColumnName("characters");
-            modelBuilder.Entity<Person>().Property(x => x.featuredInProffesion).HasColumnName("category");
+            modelBuilder.Entity<CharatersPlayed>().ToTable("charaters_played");
+            modelBuilder.Entity<CharatersPlayed>().HasNoKey();
+            modelBuilder.Entity<CharatersPlayed>().Property(x => x.nconst).HasColumnName("nconst");
+            modelBuilder.Entity<CharatersPlayed>().Property(x => x.tconst).HasColumnName("tconst");
+            modelBuilder.Entity<CharatersPlayed>().Property(x => x.characters).HasColumnName("characters");
+            modelBuilder.Entity<CharatersPlayed>().Property(x => x.category).HasColumnName("category");
 
 
 

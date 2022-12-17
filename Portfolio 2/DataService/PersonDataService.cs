@@ -32,7 +32,7 @@ namespace DataLayer.DataService
         {
             using var db = new NorthwindContext();
             return db.name_basics
-                .Include(x => x.fullName)
+                //.Include(x => x.fullName)
                 .Skip(page * pageSize)
                 .Take(pageSize)
                 .OrderBy(x => x.nameID)

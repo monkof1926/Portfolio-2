@@ -9,34 +9,41 @@ using WebServer.Models;
 namespace WebServer.Controllers
 {
 
-    [Route("api/search")]
+    [Route("api/searchname")]
     [ApiController]
 
-    public class SearchSqlController : ControllerBase
+    public class NameSearchFuncController : ControllerBase
     {
-      private ISearchFuncDataService _searchfunc;
+      private INameSearchFuncDataService _searchFunc;
       private readonly LinkGenerator _generator;
       private readonly IMapper _mapper;
     
-        public SearchSqlController(ISearchFuncDataService searchFunc, LinkGenerator generator, IMapper mapper)
+        public NameSearchFuncController(INameSearchFuncDataService searchFunc, LinkGenerator generator, IMapper mapper)
         {
-            _searchfunc = searchFunc;
+            _searchFunc = searchFunc;
             _generator = generator;
             _mapper = mapper;
         }
         
         [HttpGet (Name = nameof(GetSearchFunc))]
-
         public IActionResult GetSearchFunc(string? query = null, int type = 1)
         {
-            if(query == null)
+            if (type == 1|| type == 5 || type == 3 || type == 4)
             {
                 return NotFound();
             }
-            var results = _searchfunc.GetSearchFunc(type, query);
+            if (query == null)
+            {
+                return NotFound();
+            }
+            var results = _searchFunc.GetSearchFunc(type, query);
 
             return Ok(results);
         }
+
+     
+
+        
         /*
         private SearchSqlModel SearchSqlListModel(SearchFunc searchFunc)
         {

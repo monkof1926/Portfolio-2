@@ -20,7 +20,11 @@ builder.Services.AddSingleton<IRatingMovieDataService, RatingMovieDataService>()
 builder.Services.AddSingleton<IRatingHistoryPersonDataService, RatingHistoryPersonDataService>();
 builder.Services.AddSingleton<IRatingHistoryMovieDataService, RatingHistoryMovieDataService>();
 builder.Services.AddSingleton<ISearchHistoryDataService, SearchHistoryDataService>();
-builder.Services.AddSingleton<ISearchFuncDataService, SearchFunc>();
+builder.Services.AddSingleton<INameSearchFuncDataService, NameSearchFunc>();
+builder.Services.AddSingleton<IBestMatchSearchFuncDatService, BestMatchSearchFunc>();
+builder.Services.AddSingleton<IExactSearchFuncDataService, ExactSearchFunc>();
+builder.Services.AddSingleton<ISimpleSearchFuncDataService, SimpleSearchFunc>();
+builder.Services.AddSingleton<IStructuredSearchFuncDataService, StructuredSearchFunc>();
 
 
 

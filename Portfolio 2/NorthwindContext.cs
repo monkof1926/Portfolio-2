@@ -28,6 +28,9 @@ namespace DataLayer
         public DbSet<Omdb> Omdb_data { get; set; }
 
         public DbSet<QuerySearchResult> QuerySearchResults { get; set; }
+        public DbSet<SimpleQuerySearchResult> simpleQuerySearchResults { get; set; }
+        public DbSet<RankQuerySearchResult> rankQuerySearchResults { get; set; }
+        public DbSet<BestMatchQuerySearchResult> bestMatchQuerySearchResults { get; set; }
 
 
 
@@ -145,8 +148,6 @@ namespace DataLayer
             //Functions:
             modelBuilder.Entity<SearchResult>().HasNoKey();
             modelBuilder.Entity<SearchResult>().Property(x => x.tconst).HasColumnName("t_const");
-            modelBuilder.Entity<SearchResult>().Property(x => x.rank).HasColumnName("rank1");
-            modelBuilder.Entity<SearchResult>().Property(x => x.title).HasColumnName("title");
             modelBuilder.Entity<SearchResult>().Property(x => x.nconst).HasColumnName("n_const");
             modelBuilder.Entity<SearchResult>().Property(x => x.pname).HasColumnName("pname");
 
@@ -162,6 +163,11 @@ namespace DataLayer
 
             modelBuilder.Entity<QuerySearchResult>().HasNoKey();
 
+            modelBuilder.Entity<SimpleQuerySearchResult>().HasNoKey();
+
+            modelBuilder.Entity<RankQuerySearchResult>().HasNoKey();
+
+            modelBuilder.Entity<BestMatchQuerySearchResult>().HasNoKey();
 
         }
 

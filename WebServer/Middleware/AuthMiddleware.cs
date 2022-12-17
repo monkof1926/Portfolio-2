@@ -28,7 +28,7 @@ namespace WebServer.Middleware
                 var user = _userDataService.GetUser(username);
                 if (user != null)
                 {
-                context.Items["User"] = user;
+                    context.Items["User"] = user;
                 }
             }
             await _next(context);

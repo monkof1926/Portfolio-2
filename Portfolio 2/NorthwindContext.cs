@@ -61,7 +61,7 @@ namespace DataLayer
             modelBuilder.Entity<CharatersPlayed>().ToTable("charaters_played");
             //modelBuilder.Entity<CharatersPlayed>().HasKey(x => x.cpid);
             modelBuilder.Entity<CharatersPlayed>().HasNoKey();
-            modelBuilder.Entity<CharatersPlayed>().Property(x => x.cpid).HasColumnName("cp_id");
+            //modelBuilder.Entity<CharatersPlayed>().Property(x => x.cpid).HasColumnName("cp_id");
             modelBuilder.Entity<CharatersPlayed>().Property(x => x.cpnconst).HasColumnName("nconst");
             modelBuilder.Entity<CharatersPlayed>().Property(x => x.tconst).HasColumnName("tconst");
             modelBuilder.Entity<CharatersPlayed>().Property(x => x.charactersplayed).HasColumnName("characters");

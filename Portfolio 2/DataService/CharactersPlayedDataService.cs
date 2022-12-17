@@ -10,13 +10,14 @@ namespace DataLayer.DataService
         public CharatersPlayed? GetCharacters(string? nconst)    
         {
             using var db = new NorthwindContext();
-            if (nconst == null)
+            if (nconst != null)
             {
-                return null;
+                return db.characters_played.Find(nconst);
+               
             }
             else
             {
-                return db.characters_played.Find(nconst);
+                return null;
             }
         }
     }

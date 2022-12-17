@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebServer.Controllers
 {
-    [Route("api/searchecxact")]
+    [Route("api/searchexact")]
     [ApiController]
     public class ExactSearchFuncController : ControllerBase
     {
@@ -18,7 +18,7 @@ namespace WebServer.Controllers
             _mapper = mapper;
         }
         [HttpGet(Name = nameof(GetSearchFuncExact))]
-        public IActionResult GetSearchFuncExact(string? query = null, int type = 1)
+        public IActionResult GetSearchFuncExact(string? query = null, int type = 5)
         {
             if (query == null)
             {

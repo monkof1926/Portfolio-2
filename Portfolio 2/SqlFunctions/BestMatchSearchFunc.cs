@@ -7,7 +7,7 @@ namespace DataLayer.SqlFunctions
     public class BestMatchSearchFunc : IBestMatchSearchFuncDatService
     {   
         // This is a hack and if there is more time it will be work at 
-        public IList<RankQuerySearchResult> GetSearchFuncBest(int? type, string? searchString , int page, int pageSize)
+        public IList<RankQuerySearchResult> GetSearchFuncBest(int? type, string? searchString /*, int page, int pageSize*/)
         {
             using var ctx = new NorthwindContext();
             string[] searchwords = searchString.Split(" ");
@@ -17,27 +17,23 @@ namespace DataLayer.SqlFunctions
                 // Type 3 is Best match search 
                 if (type == 3 && searchwords.Length > 3)
                 {
-                    return ctx.rankQuerySearchResults.FromSqlInterpolated($"select * from best_match_search({searchwords[0]},{searchwords[1]},{searchwords[2]},{searchwords[3]})")
-                                                                        .Skip(page * pageSize)
-                                                                        .Take(pageSize)
-                                                                        .OrderBy(x => x.title)
-                                                                        .ToList();
+                    return ctx.rankQuerySearchResults.FromSqlInterpolated($"select * from best_match_search({searchwords[0]},{searchwords[1]},{searchwords[2]},{searchwords[3]})").ToList();
 
                 }
                 if (type == 3 && searchwords.Length == 1)
                 {
                     
-                    return ctx.rankQuerySearchResults.FromSqlInterpolated($"select * from best_match_search({searchwords[0]},' ',' ',' ')").Skip(page * pageSize).Take(pageSize).OrderBy(x => x.title).ToList();
+                    return ctx.rankQuerySearchResults.FromSqlInterpolated($"select * from best_match_search({searchwords[0]},' ',' ',' ')").ToList();
 
                 }
                  if (type == 3 && searchwords.Length == 2)
                 {
-                    return ctx.rankQuerySearchResults.FromSqlInterpolated($"select * from best_match_search({searchwords[0]},{searchwords[1]},' ',' ')").Skip(page * pageSize).Take(pageSize).OrderBy(x => x.title).ToList();
+                    return ctx.rankQuerySearchResults.FromSqlInterpolated($"select * from best_match_search({searchwords[0]},{searchwords[1]},' ',' ')").ToList();
 
                 }
                  if (type == 3 && searchwords.Length == 3)
                 {
-                    return ctx.rankQuerySearchResults.FromSqlInterpolated($"select * from best_match_search({searchwords[0]},{searchwords[1]},{searchwords[2]},' ')").Skip(page * pageSize).Take(pageSize).OrderBy(x => x.title).ToList();
+                    return ctx.rankQuerySearchResults.FromSqlInterpolated($"select * from best_match_search({searchwords[0]},{searchwords[1]},{searchwords[2]},' ')").ToList();
 
                 }
             }

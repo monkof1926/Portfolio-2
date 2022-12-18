@@ -1,8 +1,7 @@
 ﻿using DataLayer.Domain;
 using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.Security.Cryptography.X509Certificates;
+
 
 namespace DataLayer
 {
@@ -26,7 +25,7 @@ namespace DataLayer
         public DbSet<NameRating> rate_name { get; set; }
         public DbSet<TitleRating> rate_title { get; set; }
         public DbSet<Omdb> Omdb_data { get; set; }
-        public DbSet<CharatersPlayed> Characters_played { get; set; }
+        public DbSet<CharatersPlayed> characters_played { get; set; }
         public DbSet<QuerySearchResult> QuerySearchResults { get; set; }
         public DbSet<SimpleQuerySearchResult> simpleQuerySearchResults { get; set; }
         public DbSet<RankQuerySearchResult> rankQuerySearchResults { get; set; }
@@ -59,7 +58,7 @@ namespace DataLayer
             modelBuilder.Entity<Person>().Property(x => x.deathYear).HasColumnName("deathyear");
 
             modelBuilder.Entity<CharatersPlayed>().ToTable("charaters_played");
-            //modelBuilder.Entity<CharatersPlayed>().HasKey(x => x.cpid);
+            //modelBuilder.Entity<CharatersPlayed>().HasKey(x => x.cpnconst);
             modelBuilder.Entity<CharatersPlayed>().HasNoKey();
             //modelBuilder.Entity<CharatersPlayed>().Property(x => x.cpid).HasColumnName("cp_id");
             modelBuilder.Entity<CharatersPlayed>().Property(x => x.cpnconst).HasColumnName("nconst");

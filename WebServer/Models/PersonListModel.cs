@@ -6,7 +6,9 @@
         public string fullname { get; set; }
         public string birthYear { get; set; }
         public string? deathYear { get; set; }
-        public string charactersplayed { get; set; }
-        public string category { get; set; }
+        /* this hack did'nt work with in the time frame for this project 
+        public string? charactersplayed { get; set; }
+        public string? category { get; set; }
+        */
     }
 }

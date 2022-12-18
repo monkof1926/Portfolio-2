@@ -29,7 +29,6 @@ namespace DataLayer.DataService
             return db.SaveChanges() > 0;
         }
         public IList<Person> GetPersons(int page, int pageSize)
-
         {
             using var db = new NorthwindContext();
             var charaters = db.name_basics
@@ -37,17 +36,15 @@ namespace DataLayer.DataService
                 .Take(pageSize)
                 .OrderBy(x => x.nameID)
                 .ToList();
-
+            /* this hack did'nt work in the time frame 
             var charatersPlayedinMovie = new CharactersPlayedDataService();
 
             foreach (var c in charaters)
             {
-                c.charaters_played = charatersPlayedinMovie.GetCharacters(c.nameID);
+                c.characters_played = charatersPlayedinMovie.GetCharacters(c.nameID);
             }
-
+            */
             return charaters;
-
-
         }
         public Person? GetPersons(string? nameID)
         {

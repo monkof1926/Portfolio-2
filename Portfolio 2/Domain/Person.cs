@@ -8,9 +8,10 @@ namespace DataLayer.Domain
         public string? fullName { get; set; }
         public string? birthYear { get; set; }
         public string? deathYear { get; set; }
-
+        /* This hack don't work as not all people in name_basics have a charaters that they have played but more work 
         [NotMapped]
-        public CharatersPlayed? charaters_played { get; set; }
+        public CharatersPlayed? characters_played { get; set; }
+        */
        
     }
 }

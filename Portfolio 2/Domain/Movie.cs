@@ -9,9 +9,14 @@ namespace DataLayer.Domain
         public string startYear { get; set; }
         public string endYear { get; set; }
         //public float? rating { get; set; }
+        // this is a hack that allows os to add average rating and omdb to the movie
         [NotMapped]
         public RatingMovie? Rating { get; set; }
         [NotMapped]
         public Omdb? omdb { get; set; }
+        /* this hack did'nt work 
+        [NotMapped]
+        public CharatersPlayed? characters_played { get; set; }
+        */
     }
 }

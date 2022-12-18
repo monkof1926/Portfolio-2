@@ -11,7 +11,6 @@ namespace WebServer.Models.Profiles
                .ForMember(dst => dst.ratingAvergeTitle, opt => opt.MapFrom(src => src.Rating.ratingAvergeTitle))
                 .ForMember(dst => dst.poster, opt => opt.MapFrom(src => src.omdb.poster))
                 .ForMember(dst => dst.plot, opt => opt.MapFrom(src => src.omdb.plot));
-
             CreateMap<MovieListModel, Movie>();
         }
     }

@@ -7,9 +7,11 @@ namespace WebServer.Models.Profiles
     {
         public PersonProfile()
         {
-            CreateMap<Person, PersonListModel>()
-                .ForMember(dst => dst.charactersplayed, opt => opt.MapFrom(src => src.charaters_played.charactersplayed))
-                .ForMember(dst => dst.category, opt => opt.MapFrom(src => src.charaters_played.category));
+            CreateMap<Person, PersonListModel>();
+                /*
+                .ForMember(dst => dst.charactersplayed, opt => opt.MapFrom(src => src.characters_played.charactersplayed))
+                .ForMember(dst => dst.category, opt => opt.MapFrom(src => src.characters_played.category));
+                */
 
             CreateMap<PersonListModel, Person>();
         }

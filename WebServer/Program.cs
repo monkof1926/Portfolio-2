@@ -25,6 +25,7 @@ builder.Services.AddSingleton<IBestMatchSearchFuncDatService, BestMatchSearchFun
 builder.Services.AddSingleton<IExactSearchFuncDataService, ExactSearchFunc>();
 builder.Services.AddSingleton<ISimpleSearchFuncDataService, SimpleSearchFunc>();
 builder.Services.AddSingleton<IStructuredSearchFuncDataService, StructuredSearchFunc>();
+builder.Services.AddSingleton<ICharactersPlayedDataService, CharactersPlayedDataService>();
 
 
 

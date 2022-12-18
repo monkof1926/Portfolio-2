@@ -6,7 +6,7 @@ namespace DataLayer.DataService
 {
     public class CharactersPlayedDataService : ICharactersPlayedDataService 
     {
-        public CharatersPlayed? GetCharacters(string cpnconst)
+        public CharactersPlayed? GetCharacters(string? cpnconst)
         {
             using var db = new NorthwindContext();
             if (cpnconst != null)

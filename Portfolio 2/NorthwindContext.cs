@@ -25,7 +25,7 @@ namespace DataLayer
         public DbSet<NameRating> rate_name { get; set; }
         public DbSet<TitleRating> rate_title { get; set; }
         public DbSet<Omdb> Omdb_data { get; set; }
-        public DbSet<CharatersPlayed> characters_played { get; set; }
+        public DbSet<CharactersPlayed> characters_played { get; set; }
         public DbSet<QuerySearchResult> QuerySearchResults { get; set; }
         public DbSet<SimpleQuerySearchResult> simpleQuerySearchResults { get; set; }
         public DbSet<RankQuerySearchResult> rankQuerySearchResults { get; set; }
@@ -57,14 +57,14 @@ namespace DataLayer
             modelBuilder.Entity<Person>().Property(x => x.birthYear).HasColumnName("birthyear");
             modelBuilder.Entity<Person>().Property(x => x.deathYear).HasColumnName("deathyear");
 
-            modelBuilder.Entity<CharatersPlayed>().ToTable("charaters_played");
+            modelBuilder.Entity<CharactersPlayed>().ToTable("charaters_played");
             //modelBuilder.Entity<CharatersPlayed>().HasKey(x => x.cpnconst);
-            modelBuilder.Entity<CharatersPlayed>().HasNoKey();
+            modelBuilder.Entity<CharactersPlayed>().HasNoKey();
             //modelBuilder.Entity<CharatersPlayed>().Property(x => x.cpid).HasColumnName("cp_id");
-            modelBuilder.Entity<CharatersPlayed>().Property(x => x.cpnconst).HasColumnName("nconst");
-            modelBuilder.Entity<CharatersPlayed>().Property(x => x.tconst).HasColumnName("tconst");
-            modelBuilder.Entity<CharatersPlayed>().Property(x => x.charactersplayed).HasColumnName("characters");
-            modelBuilder.Entity<CharatersPlayed>().Property(x => x.category).HasColumnName("category");
+            modelBuilder.Entity<CharactersPlayed>().Property(x => x.cpnconst).HasColumnName("nconst");
+            modelBuilder.Entity<CharactersPlayed>().Property(x => x.tconst).HasColumnName("tconst");
+            modelBuilder.Entity<CharactersPlayed>().Property(x => x.charactersplayed).HasColumnName("characters");
+            modelBuilder.Entity<CharactersPlayed>().Property(x => x.category).HasColumnName("category");
 
 
 

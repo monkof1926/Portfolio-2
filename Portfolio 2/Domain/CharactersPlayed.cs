@@ -1,6 +1,6 @@
 ﻿namespace DataLayer.Domain
 {
-    public class CharatersPlayed 
+    public class CharactersPlayed 
     {
       //  public int cpid { get; set; } a primary key that were made to make a primary key 
         public string? cpnconst  { get; set; }

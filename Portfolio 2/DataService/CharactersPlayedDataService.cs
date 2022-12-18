@@ -11,6 +11,7 @@ namespace DataLayer.DataService
             using var db = new NorthwindContext();
             if (cpnconst != null)
             {
+                //Get error System.NullReferenceException and can't fix it by using ? in front all things 
                 return db.characters_played.Find(cpnconst);
             }
                 return null;

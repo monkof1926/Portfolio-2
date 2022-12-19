@@ -40,10 +40,12 @@ namespace WebServer.Controllers
             {
                 return NotFound();
             }
+            else
+            {
+                var model = PersonListModel(person);
 
-            var model = PersonModel(person);
-
-            return Ok(model);
+                return Ok(model);
+            }
         }
 
         [HttpDelete("{nameID}")]
@@ -84,18 +86,18 @@ namespace WebServer.Controllers
             };
             return result;
         }
-
+    /*
         private PersonModel PersonModel(Person person)
         {
             var model = _mapper.Map<PersonModel>(person);
             model.Url = _generator.GetUriByName(HttpContext, nameof(GetPerson), new { person.nameID });
             return model;
         }
-
+    */
         private PersonListModel PersonListModel(Person person)
         {
             var model = _mapper.Map<PersonListModel>(person);
-            model.Url = _generator.GetUriByName(HttpContext, nameof(GetPerson), new { person.nameID });
+            model.Url = _generator.GetUriByName(HttpContext, nameof(GetPersons), new { person.nameID });
             return model;
         }
 
@@ -104,7 +106,7 @@ namespace WebServer.Controllers
         {
             return _generator.GetUriByName(
             HttpContext,
-                nameof(GetPerson), new { page, pageSize });
+                nameof(GetPersons), new { page, pageSize });
 
         }
     }

@@ -2,7 +2,7 @@
 {
     public class PersonModel
     {
-        public string? Url { get; set; }    
+        //public string? Url { get; set; }    
         public string fullname { get; set; }
         public string? nameID { get; set; }
         public string birthYear { get; set; }

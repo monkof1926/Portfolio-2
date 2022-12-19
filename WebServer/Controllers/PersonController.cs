@@ -34,7 +34,7 @@ namespace WebServer.Controllers
         [HttpGet("{nameID}", Name = nameof(GetPerson))]
         public IActionResult GetPerson(string nameID)
         {
-            var person = _personDataService.GetPersons(nameID);
+            var person = _personDataService.GetPerson(nameID);
 
             if (person == null)
             {

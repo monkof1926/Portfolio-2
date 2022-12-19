@@ -88,14 +88,14 @@ namespace WebServer.Controllers
         private PersonModel PersonModel(Person person)
         {
             var model = _mapper.Map<PersonModel>(person);
-            model.Url = _generator.GetUriByName(HttpContext, nameof(GetPersons), new { person.nameID });
+            model.Url = _generator.GetUriByName(HttpContext, nameof(GetPerson), new { person.nameID });
             return model;
         }
 
         private PersonListModel PersonListModel(Person person)
         {
             var model = _mapper.Map<PersonListModel>(person);
-            model.Url = _generator.GetUriByName(HttpContext, nameof(GetPersons), new { person.nameID });
+            model.Url = _generator.GetUriByName(HttpContext, nameof(GetPerson), new { person.nameID });
             return model;
         }
 
@@ -104,7 +104,7 @@ namespace WebServer.Controllers
         {
             return _generator.GetUriByName(
             HttpContext,
-                nameof(GetPersons), new { page, pageSize });
+                nameof(GetPerson), new { page, pageSize });
 
         }
     }

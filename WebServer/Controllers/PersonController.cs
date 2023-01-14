@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DataLayer.DataService;
 using DataLayer.Domain;
 using DataLayer.IDataService;
 using Microsoft.AspNetCore.Mvc;
@@ -26,9 +27,9 @@ namespace WebServer.Controllers
         [HttpGet(Name = nameof(GetPersons))]
         public IActionResult GetPersons(int page = 0, int pageSize = 15)
         {
-            var person = _personDataService.GetPersons(page, pageSize).Select(PersonListModel);
+            var movie = _personDataService.GetPersons(page, pageSize).Select(PersonListModel);
             var total = _personDataService.GetNumberOfPersons();
-            return Ok(Paging(page, pageSize, total, person));
+            return Ok(Paging(page, pageSize, total, movie));
         }
 
         [HttpGet("{nameID}", Name = nameof(GetPerson))]
@@ -48,7 +49,7 @@ namespace WebServer.Controllers
             }
         }
 
-        [HttpDelete("{nameID}")]
+        [HttpDelete("{movieID}")]
         public IActionResult DeletePerson(string nameID)
         {
             var deleted = _personDataService.DeletePerson(nameID);
@@ -86,22 +87,13 @@ namespace WebServer.Controllers
             };
             return result;
         }
-    /*
-        private PersonModel PersonModel(Person person)
-        {
-            var model = _mapper.Map<PersonModel>(person);
-            model.Url = _generator.GetUriByName(HttpContext, nameof(GetPerson), new { person.nameID });
-            return model;
-        }
-    */
+
         private PersonListModel PersonListModel(Person person)
         {
             var model = _mapper.Map<PersonListModel>(person);
-            model.Url = _generator.GetUriByName(HttpContext, nameof(GetPersons), new { person.nameID });
+            model.Url = _generator.GetUriByName(HttpContext, nameof(GetPerson), new { person.nameID });
             return model;
         }
-
-
         private string? CreateLink(int page, int pageSize)
         {
             return _generator.GetUriByName(

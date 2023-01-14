@@ -16,10 +16,10 @@ namespace DataLayer.DataService
             db.name_basics.Add(person);
             db.SaveChanges();
         }
-        public bool DeletePerson(string personID)
+        public bool DeletePerson(string nameID)
         {
             using var db = new NorthwindContext();
-            var person = db.name_basics.Find(personID);
+            var person = db.name_basics.Find(nameID);
             if (person != null)
             {
                 db.name_basics.Remove(person);

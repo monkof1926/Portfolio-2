@@ -15,7 +15,7 @@ namespace WebServer.Controllers
         private readonly LinkGenerator _generator;
         private readonly IMapper _mapper;
 
-        private const int MaxpageSize = 12500;
+        private const int MaxpageSize = 125;
 
         public BestMatchSearchFuncController(IBestMatchSearchFuncDatService searchfunc, LinkGenerator generator, IMapper mapper)
         {
